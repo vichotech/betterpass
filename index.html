@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassGen</title>
+    <link rel="stylesheet" href="index.css">
+    <link type="image/png" sizes="32x32" rel="icon" href="assets/img/icons8-password-3-32.png">
+</head>
+
+<body>
+    <div class="mesh-gradient"></div>
+    <main class="flex flex-col">
+        <header class="main-header flex flex-row">
+            <!-- <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="svg-icon svg-icon-m settings-toggle" style="visibility: hidden;"> -->
+            <h1>Password Generator</h1>
+            <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="svg-icon svg-icon-m settings-toggle">
+        </header>
+        <!-- <div class="empty-state">
+            <p>There's no password created yet</p>
+            <p>Press 'Generate' to star</p>
+        </div> -->
+        <p class="password-cont"></p>
+        <p class="password-strength" hidden>Password will take <span id="crack-time">some time</span> to crack</p>
+        <div class="settings flex flex-col" id="settings">
+            <p class="settings-title">Settings</p>
+            <div class="checkbox-frames-cont flex flex-col">
+                <div class="input-frame input-frame-h checkbox-frame">
+                    <label for="include-lower">Lowercase</label>
+                    <input type="checkbox" name="include-lower" id="include-lower" checked/>
+                </div>
+                <div class="input-frame input-frame-h checkbox-frame">
+                    <label for="include-upper">Uppercase</label>
+                    <input type="checkbox" name="include-upper" id="include-upper" checked />
+                </div>
+                <div class="input-frame input-frame-h checkbox-frame">
+                    <label for="include-numbers">Numbers</label>
+                    <input type="checkbox" name="include-numbers" id="include-numbers" checked/>
+                </div>
+                <div class="input-frame input-frame-h checkbox-frame">
+                    <label for="include-special">Special characters</label>
+                    <input type="checkbox" name="include-special" id="include-special" checked/>
+                </div>
+            </div>
+            <div class="input-frame input-frame-v select-frame">
+                <label for="fake-select">First character:</label>
+                <details class="custom-select" id="fake-select">
+                    <summary class="radios flex flex-row">
+                        <p id="fake-label"></p>
+                        <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon">
+                    </summary>
+                    <ul class="list" id="fake-options-list">
+                        <li class="opt-cont" onclick="closeDetails()">
+                            <input id="first-radio" class="fake-opt" type="radio" name="char" value="None" checked>
+                        </li>
+                    </ul>
+                </details>
+            </div>
+            <div class="input-frame input-frame-v" id="length-frame">
+                <label id="length-label" for="length-input">Password length: </label>
+                <input type="range" name="length-input" id="length-input" value="8" min="8" max="26">
+            </div>
+            <button id="done-btn" class="primary-btn settings-toggle">Done</button>
+        </div>
+        <div class="btn-cont flex flex-row">
+            <button id="copy-btn" class="secondary-btn">Copy</button>
+            <button id="gen-btn" class="primary-btn">Generate</button>
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+
+</html>
