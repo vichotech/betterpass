@@ -17,6 +17,7 @@ const lengthInput = document.getElementById("length-input");
 const genBtn = document.getElementById("gen-btn");
 const copyBtn = document.getElementById("copy-btn");
 
+const emptyState = document.getElementById("empty-state");
 const passText = document.querySelector(".password-cont");
 const crackTimeSpan = document.getElementById("crack-time");
 
@@ -282,6 +283,9 @@ function genPassword() {
         password += passChars[index];
         passChars.splice(index, 1);
     }
+
+    // Hide empty state
+    emptyState.style.display = "none";
 
     // Turn every 'password' variable's character into a .char-span element
     const passCharsArray = password.split("");

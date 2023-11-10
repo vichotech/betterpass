@@ -17,22 +17,24 @@
     --c-primary-95: #eff;
 
 
-    --c-neutral-5: #111;
-    --c-neutral-10: #222;
-    --c-neutral-20: #333;
-    --c-neutral-30: #555;
-    --c-neutral-40: #666;
-    --c-neutral-50: #888;
-    --c-neutral-60: #aaa;
-    --c-neutral-70: #bbb;
-    --c-neutral-80: #ccc;
-    --c-neutral-90: #ddd;
-    --c-neutral-95: #eee;
+    --c-neutral-0: #000000;
+    --c-neutral-5: #0d0d0d;
+    --c-neutral-10: #1a1a1a;
+    --c-neutral-20: #333333;
+    --c-neutral-30: #4d4d4d;
+    --c-neutral-40: #666666;
+    --c-neutral-50: #808080;
+    --c-neutral-60: #999999;
+    --c-neutral-70: #b3b3b3;
+    --c-neutral-80: #cccccc;
+    --c-neutral-90: #e6e6e6;
+    --c-neutral-95: #f2f2f2;
+    --c-neutral-100: #ffffff;
 
     /* TYPOGRAPHY */
-    --ff-p: 'DM Sans';      /* Primary font */
-    --ff-s: 'DM Serif';     /* Secondary font */
-    --ff-c: 'DM Mono';      /* Code font */
+    --ff-p: 'DM Sans', Roboto, sans-serif;          /* Primary font */
+    --ff-s: 'DM Serif', serif;                      /* Secondary font */
+    --ff-c: 'DM Mono', Consolas, monospace;         /* Code font */
 
     --fs-6xl: 3.3rem;       /* ~40px */
     --fs-5xl: 3rem;         /* 36px */
@@ -80,4 +82,29 @@
     --s-xl: 28px;
     --s-2xl: 32px;
     --s-3xl: 36px;
+
+    /* SIZING 2 */
+    --s-x: 4px;
+    --s-2x: 8px;
+    --s-3x: 12px;
+    --s-4x: 16px;
+    --s-5x: 20px;
+    --s-6x: 24px;
+    --s-7x: 28px;
+    --s-8x: 32px;
+    --s-9x: 36px;
+    --s-10x: 40px;
+
+    /* RADIUS */
+    --r-50: 50%;         /* Only when height = width */
+    --r-x: var(--s-x);
+    --r-2x: var(--s-2x);
+    --r-3x: var(--s-3x);
+    --r-4x: var(--s-4x);
+    --r-5x: var(--s-5x);
+    --r-6x: var(--s-6x);
+    --r-7x: var(--s-7x);
+    --r-8x: var(--s-8x);
+    --r-9x: var(--s-9x);
+    --r-10x: var(--s-10x);
 }

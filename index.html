@@ -13,18 +13,25 @@
     <div class="mesh-gradient"></div>
     <main class="flex flex-col">
         <header class="main-header flex flex-row">
-            <!-- <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="svg-icon svg-icon-m settings-toggle" style="visibility: hidden;"> -->
-            <h1>Password Generator</h1>
+            <h1>BetterPass</h1>
             <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="svg-icon svg-icon-m settings-toggle">
         </header>
-        <!-- <div class="empty-state">
-            <p>There's no password created yet</p>
-            <p>Press 'Generate' to star</p>
-        </div> -->
-        <p class="password-cont"></p>
+
+        <!-- PASSWORD CONTAINER -->
+        <div class="password-cont z-2">
+            <div class="flex flex-col f-ai-center c-n-95 fs-2xl" id="empty-state">
+                <p>You've not created any passwords yet.</p>
+                <p>Press <span class="command c-p-50">'Generate'</span> to start.</p>
+            </div>
+        </div>
+
         <p class="password-strength" hidden>Password will take <span id="crack-time">some time</span> to crack</p>
+
+        <!-- SETTINGS -->
         <div class="settings flex flex-col" id="settings">
             <p class="settings-title">Settings</p>
+
+            <!-- CHECKBOXES -->
             <div class="checkbox-frames-cont flex flex-col">
                 <div class="input-frame input-frame-h checkbox-frame">
                     <label for="include-lower">Lowercase</label>
@@ -43,6 +50,8 @@
                     <input type="checkbox" name="include-special" id="include-special" checked/>
                 </div>
             </div>
+
+            <!-- FAKE SELECT -->
             <div class="input-frame input-frame-v select-frame">
                 <label for="fake-select">First character:</label>
                 <details class="custom-select" id="fake-select">
@@ -57,12 +66,18 @@
                     </ul>
                 </details>
             </div>
+
+            <!-- RANGE -->
             <div class="input-frame input-frame-v" id="length-frame">
                 <label id="length-label" for="length-input">Password length: </label>
                 <input type="range" name="length-input" id="length-input" value="8" min="8" max="26">
             </div>
+
+            <!-- BUTTONS -->
             <button id="done-btn" class="primary-btn settings-toggle">Done</button>
         </div>
+
+        <!-- BUTTONS CONTAINER -->
         <div class="btn-cont flex flex-row">
             <button id="copy-btn" class="secondary-btn">Copy</button>
             <button id="gen-btn" class="primary-btn">Generate</button>
