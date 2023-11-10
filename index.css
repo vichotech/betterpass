@@ -1,89 +1,6 @@
+@import url(design-tokens.css);
+
 html {font-size: 75%;} /*12px*/
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
-
-/* DESIGN TOKENS
-================================================================= */
-:root {
-    /* COLOR */
-    --c-primary-5: #022;
-    --c-primary-10: #033;
-    --c-primary-20: #066;
-    --c-primary-30: #099;
-    --c-primary-40: #0cc;
-    --c-primary-50: #0ff;
-    --c-primary-60: #3ff;
-    --c-primary-70: #6ff;
-    --c-primary-80: #9ff;
-    --c-primary-90: #cff;
-    --c-primary-95: #eff;
-
-
-    --c-neutral-5: #111;
-    --c-neutral-10: #222;
-    --c-neutral-20: #333;
-    --c-neutral-30: #555;
-    --c-neutral-40: #666;
-    --c-neutral-50: #888;
-    --c-neutral-60: #aaa;
-    --c-neutral-70: #bbb;
-    --c-neutral-80: #ccc;
-    --c-neutral-90: #ddd;
-    --c-neutral-95: #eee;
-
-    /* TYPOGRAPHY */
-    --ff-p: 'DM Sans';
-    --ff-s: 'DM Serif';
-    --ff-m: 'DM Mono';
-
-    --fs-6xl: 3.3rem;   /*40px*/
-    --fs-5xl: 3rem;     /*36px*/
-    --fs-4xl: 2.7rem;   /*32px*/
-    --fs-3xl: 2.3rem;   /*28px*/
-    --fs-2xl: 2rem;     /*24px*/
-    --fs-xl: 1.7rem;    /*20px*/
-    --fs-l: 1.3rem;     /*16px*/
-    --fs-m: 1.2rem;     /*14px*/
-    --fs-s: 1rem;       /*12px*/
-
-    --fw-3xl: 900;
-    --fw-2xl: 800;
-    --fw-xl: 700;
-    --fw-l: 600;
-    --fw-m: 500;
-    --fw-s: 400;
-    --fw-xs: 300;
-    --fw-2xs: 200;
-    --fw-3xs: 100;
-
-    --f-h1: normal normal var(--fw-l) var(--fs-6xl) 3.7rem var(--ff-p);
-    --f-h2: normal normal var(--fw-l) var(--fs-5xl) 3.3rem var(--ff-p);
-    --f-h3: normal normal var(--fw-l) var(--fs-4xl) 3rem var(--ff-p);
-    --f-h4: normal normal var(--fw-l) var(--fs-3xl) 2.7rem var(--ff-p);
-    --f-h5: normal normal var(--fw-l) var(--fs-2xl) 2.3rem var(--ff-p);
-    --f-h6: normal normal var(--fw-l) var(--fs-xl) 2rem var(--ff-p);
-    --f-sub-l: normal normal var(--fw-m) var(--fs-l) 1.7rem var(--ff-p);
-    --f-sub-m: normal normal var(--fw-m) var(--fs-m) 1.3rem var(--ff-p);
-    --f-sub-s: normal normal var(--fw-m) var(--fs-s) 1.2rem var(--ff-p);
-    --f-body-l: normal normal var(--fw-s) var(--fs-l) 1.7rem var(--ff-p);
-    --f-body-m: normal normal var(--fw-s) var(--fs-m) 1.3rem var(--ff-p);
-    --f-body-s: normal normal var(--fw-s) var(--fs-s) 1.2rem var(--ff-p);
-    --f-code-l: normal normal var(--fw-s) var(--fs-l) 1.7rem var(--ff-c);
-    --f-code-m: normal normal var(--fw-s) var(--fs-m) 1.3rem var(--ff-c);
-    --f-code-s: normal normal var(--fw-s) var(--fs-s) 1.2rem var(--ff-c);
-
-    /* SIZING */
-    --s-3xs: 4px;
-    --s-2xs: 8px;
-    --s-xs: 12px;
-    --s-s: 16px;
-    --s-m: 20px;
-    --s-l: 24px;
-    --s-xl: 28px;
-    --s-2xl: 32px;
-    --s-3xl: 36px;
-
-}
 
 *, *::before, *::after {
     margin: 0;
@@ -151,7 +68,7 @@ main h1 {
 }
 
 .password-cont {
-    font-family: var(--ff-c);
+    font-family: var(--ff-m);
     font-size: 94px;
     color: var(--c-primary-50);
 }
@@ -183,8 +100,11 @@ main h1 {
     -ms-border-radius: var(--s-m);
     -o-border-radius: var(--s-m);
     border: #00ffff11 1px solid;
-    transition-timing-function: cubic-bezier(0.65, 0, 0.18, 1);
-    transition-duration: 0.4s;
+    transition: all cubic-bezier(.08,.82,.17,1) .4s;
+    -webkit-transition: all cubic-bezier(.08,.82,.17,1) .4s;
+    -moz-transition: all cubic-bezier(.08,.82,.17,1) .4s;
+    -ms-transition: all cubic-bezier(.08,.82,.17,1) .4s;
+    -o-transition: all cubic-bezier(.08,.82,.17,1) .4s;
     position: fixed;
     right: 0;
     top: var(--s-xs);
@@ -319,12 +239,7 @@ button.secondary-btn:hover {
     border: #00ffff11 1px solid; /*! Fix border */
     border-bottom: none; /*? Is fixed? */
     gap: 0;
-    /* justify-content: space-between; */
-    /* border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px; */
+    cursor: pointer;
 }
 
 .checkbox-frame * {
@@ -355,6 +270,7 @@ button.secondary-btn:hover {
 
 input[type="checkbox"] {
 	appearance: none;
+    -webkit-appearance: none;
 	cursor: pointer;
 	width: 40px;
 	height: 22px;
