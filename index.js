@@ -292,6 +292,7 @@ function genPassword() {
     passCharsArray.forEach(function(c) {
         const char = document.createElement("span");
         char.classList.add("char-span");
+        char.classList.add("br2");
         char.innerText = c;
         /* if (lowerChars.includes(c)) {
             char.style.color = "cyan";

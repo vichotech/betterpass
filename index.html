@@ -4,60 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PassGen</title>
+    <title>BetterPass</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="classes.css">
     <link type="image/png" sizes="32x32" rel="icon" href="assets/img/icons8-password-3-32.png">
 </head>
 
-<body>
+<body class="c-n95 o-hidden">
     <div class="mesh-gradient"></div>
-    <main class="flex flex-col">
-        <header class="main-header flex flex-row">
-            <h1>BetterPass</h1>
+    <main class="h100 p4 flex flex-col f-jc-sb f-ai-center g2">
+        <header class="main-header flex flex-row f-jc-sb z1">
+            <h1 class="c-p50">BetterPass</h1>
             <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="svg-icon svg-icon-m settings-toggle">
         </header>
 
         <!-- PASSWORD CONTAINER -->
-        <div class="password-cont z-2">
-            <div class="flex flex-col f-ai-center c-n-95 fs-2xl" id="empty-state">
+        <div class="password-cont c-p50 z2">
+            <div class="flex flex-col f-ai-center c-n95 fs-2xl" id="empty-state">
                 <p>You've not created any passwords yet.</p>
-                <p>Press <span class="command c-p-50">'Generate'</span> to start.</p>
+                <p>Press <span class="command c-p50">'Generate'</span> to start.</p>
             </div>
         </div>
 
-        <p class="password-strength" hidden>Password will take <span id="crack-time">some time</span> to crack</p>
+        <!-- <p class="password-strength c-p50">Password will take <span id="crack-time">some time</span> to crack</p> -->
 
         <!-- SETTINGS -->
-        <div class="settings flex flex-col" id="settings">
-            <p class="settings-title">Settings</p>
+        <div class="settings p4 flex flex-col g2 br5 fixed t50 tr-tx0 tr-ty-50 t-cb z2" id="settings">
+            <p class="settings-title c-p50">Settings</p>
 
             <!-- CHECKBOXES -->
             <div class="checkbox-frames-cont flex flex-col">
-                <div class="input-frame input-frame-h checkbox-frame">
+                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
                     <label for="include-lower">Lowercase</label>
                     <input type="checkbox" name="include-lower" id="include-lower" checked/>
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame">
+                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
                     <label for="include-upper">Uppercase</label>
                     <input type="checkbox" name="include-upper" id="include-upper" checked />
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame">
+                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
                     <label for="include-numbers">Numbers</label>
                     <input type="checkbox" name="include-numbers" id="include-numbers" checked/>
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame">
+                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
                     <label for="include-special">Special characters</label>
                     <input type="checkbox" name="include-special" id="include-special" checked/>
                 </div>
             </div>
 
             <!-- FAKE SELECT -->
-            <div class="input-frame input-frame-v select-frame">
+            <div class="input-frame input-frame-v select-frame flex flex-col f-ai-start g1">
                 <label for="fake-select">First character:</label>
-                <details class="custom-select" id="fake-select">
-                    <summary class="radios flex flex-row">
+                <details class="custom-select w100 relative" id="fake-select">
+                    <summary class="radios flex flex-row c-pointer">
                         <p id="fake-label"></p>
-                        <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon">
+                        <i data-lucide="chevron-down" class="svg-icon svg-icon-s animated-icon"></i>
+                        <!-- <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon"> -->
                     </summary>
                     <ul class="list" id="fake-options-list">
                         <li class="opt-cont" onclick="closeDetails()">
@@ -68,21 +70,31 @@
             </div>
 
             <!-- RANGE -->
-            <div class="input-frame input-frame-v" id="length-frame">
+            <div class="input-frame input-frame-v flex flex-col f-ai-start g1" id="length-frame">
                 <label id="length-label" for="length-input">Password length: </label>
-                <input type="range" name="length-input" id="length-input" value="8" min="8" max="26">
+                <input class="br2" type="range" name="length-input" id="length-input" value="8" min="8" max="26">
             </div>
 
             <!-- BUTTONS -->
-            <button id="done-btn" class="primary-btn settings-toggle">Done</button>
+            <button id="done-btn" class="primary-btn settings-toggle br2">Done</button>
         </div>
 
         <!-- BUTTONS CONTAINER -->
         <div class="btn-cont flex flex-row">
-            <button id="copy-btn" class="secondary-btn">Copy</button>
-            <button id="gen-btn" class="primary-btn">Generate</button>
+            <button id="copy-btn" class="secondary-btn br2">Copy</button>
+            <button id="gen-btn" class="primary-btn br2">Generate</button>
         </div>
     </main>
+
+    <!-- LUCIDE ICONS -->
+    <!-- Development version -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Production version -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
     <script src="index.js"></script>
 </body>
 

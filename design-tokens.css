@@ -4,32 +4,41 @@
 
 :root {
     /* COLOR */
-    --c-primary-5: #022;
-    --c-primary-10: #033;
-    --c-primary-20: #066;
-    --c-primary-30: #099;
-    --c-primary-40: #0cc;
-    --c-primary-50: #0ff;
-    --c-primary-60: #3ff;
-    --c-primary-70: #6ff;
-    --c-primary-80: #9ff;
-    --c-primary-90: #cff;
-    --c-primary-95: #eff;
+    --primary-5: #001a16;
+    --primary-10: #00332c;
+    --primary-20: #006658;
+    --primary-30: #009985;
+    --primary-40: #00ccb1;
+    --primary-50: #00ffdd;
+    --primary-60: #33ffe4;
+    --primary-70: #66ffeb;
+    --primary-80: #99fff1;
+    --primary-90: #ccfff8;
+    --primary-95: #e6fffc;
 
+    --neutral-0: #000;
+    --neutral-5: #0d0d0d;
+    --neutral-10: #1a1a1a;
+    --neutral-20: #333;
+    --neutral-30: #4d4d4d;
+    --neutral-40: #666;
+    --neutral-50: #808080;
+    --neutral-60: #999;
+    --neutral-70: #b3b3b3;
+    --neutral-80: #ccc;
+    --neutral-90: #e6e6e6;
+    --neutral-95: #f2f2f2;
+    --neutral-100: #fff;
 
-    --c-neutral-0: #000000;
-    --c-neutral-5: #0d0d0d;
-    --c-neutral-10: #1a1a1a;
-    --c-neutral-20: #333333;
-    --c-neutral-30: #4d4d4d;
-    --c-neutral-40: #666666;
-    --c-neutral-50: #808080;
-    --c-neutral-60: #999999;
-    --c-neutral-70: #b3b3b3;
-    --c-neutral-80: #cccccc;
-    --c-neutral-90: #e6e6e6;
-    --c-neutral-95: #f2f2f2;
-    --c-neutral-100: #ffffff;
+    --primary-a10: #00ffdd1a;
+    --primary-a20: #0fd3;
+    --primary-a30: #00ffdd4d;
+    --primary-a40: #0fd6;
+    --primary-a50: #00ffdd80;
+    --primary-a60: #0fd9;
+    --primary-a70: #00ffddb3;
+    --primary-a80: #0fdc;
+    --primary-a90: #00ffdde6;
 
     /* TYPOGRAPHY */
     --ff-p: 'DM Sans', Roboto, sans-serif;          /* Primary font */
