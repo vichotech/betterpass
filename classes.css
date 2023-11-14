@@ -3,8 +3,27 @@
 .h100 {
     height: 100%;
 }
+.h6 {
+    height: var(--s-6x);
+}
+.h10 {
+    height: var(--s-10x);
+}
+.w10 {
+    width: var(--s-10x);
+}
 .w100 {
     width: 100%;
+}
+.w4 {
+    width: var(--s-4x);
+}
+.w6 {
+    width: var(--s-6x);
+}
+
+.lh10 {
+    line-height: var(--s-10x);
 }
 
 /* MARGIN */
@@ -15,6 +34,27 @@
 /* PADDING */
 .p4 {
     padding: var(--s-4x);
+}
+.p0-2 {
+    padding: 0 var(--s-2x);
+}
+
+.bg-a10 {
+    background: var(--primary-a10);
+}
+.bg-p50 {
+    background: var(--primary-50);
+}
+
+.bd-a10-1-s {
+    border: var(--primary-a10) 1px solid;
+}
+
+.bf-blur2 {
+    backdrop-filter: blur(var(--s-2x));
+}
+.bf-blur3 {
+    backdrop-filter: blur(var(--s-3x));
 }
 
 /* RADIUS */
@@ -31,6 +71,13 @@
     -moz-border-radius: var(--s-2x);
     -ms-border-radius: var(--s-2x);
     -o-border-radius: var(--s-2x);
+}
+.br3 {
+    border-radius: var(--s-3x);
+    -webkit-border-radius: var(--s-3x);
+    -moz-border-radius: var(--s-3x);
+    -ms-border-radius: var(--s-3x);
+    -o-border-radius: var(--s-3x);
 }
 .br4 {
     border-radius: var(--s-4x);
@@ -87,6 +134,10 @@
     font-size: var(--fs-6xl);
 }
 
+.ff-p {
+    font-family: var(--ff-p);
+}
+
 /* POSITION */
 .fixed {
     position: fixed;
@@ -132,6 +183,19 @@
 }
 .z3 {
     z-index: 12;
+}
+
+/* DISPLAY */
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
 }
 
 /* FLEXBOX */
@@ -217,6 +281,22 @@
 }
 
 /* TRANSITION */
+.t-eo2 {
+    transition: all ease-out 0.2s;
+    -webkit-transition: all ease-out 0.2s;
+    -moz-transition: all ease-out 0.2s;
+    -ms-transition: all ease-out 0.2s;
+    -o-transition: all ease-out 0.2s;
+}
+
+.t-eo3 {
+    transition: all ease-out 0.3s;
+    -webkit-transition: all ease-out 0.3s;
+    -moz-transition: all ease-out 0.3s;
+    -ms-transition: all ease-out 0.3s;
+    -o-transition: all ease-out 0.3s;
+}
+
 .t-cb {
     transition: all cubic-bezier(.08,.82,.17,1) .4s;
     -webkit-transition: all cubic-bezier(.08,.82,.17,1) .4s;

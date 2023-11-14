@@ -210,10 +210,12 @@ function updateFirstCharSelect() {
 function createRadioElement(liClass, radioValue) {
     const li = document.createElement("li");
     li.classList.add("opt-cont");
-    li.classList.add(liClass)
+    li.classList.add(liClass);
     li.setAttribute("onClick", "closeDetails()");
     const radio = document.createElement("input");
     radio.classList.add("fake-opt");
+    radio.classList.add("w100");
+    radio.classList.add("c-pointer");
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", "char");
     radio.value = radioValue;
@@ -292,6 +294,9 @@ function genPassword() {
     passCharsArray.forEach(function(c) {
         const char = document.createElement("span");
         char.classList.add("char-span");
+        char.classList.add("bg-a10");
+        char.classList.add("bf-blur2");
+        char.classList.add("bd-a10-1-s");
         char.classList.add("br2");
         char.innerText = c;
         /* if (lowerChars.includes(c)) {
@@ -308,10 +313,10 @@ function genPassword() {
 
     const crackTime = calcCrackTime();
     if (crackTime < 1) {
-        crackTimeSpan.innerText = "< 1 year"
+        // crackTimeSpan.innerText = "< 1 year"
         console.log(`Tiempo aproximado para descifrar la contraseña: < 1 año`);
     } else {
-        crackTimeSpan.innerText = `${crackTime} years`;
+        // crackTimeSpan.innerText = `${crackTime} years`;
         console.log(`Tiempo aproximado para descifrar la contraseña: ${crackTime} años`);
     }
 }; //* WORKING OK 👌
@@ -331,6 +336,13 @@ function showAlert(type, message, duration) {
     const newAlert = document.createElement("div");
     newAlert.classList.add("alert");
     newAlert.classList.add(`alert-${type}`);
+    newAlert.classList.add("inline");
+    newAlert.classList.add("br2");
+    newAlert.classList.add("absolute");
+    newAlert.classList.add("l50");
+    newAlert.classList.add("tr-tx-50");
+    newAlert.classList.add("t-eo2");
+    newAlert.classList.add("z1");
     newAlert.innerText = message;
     newAlert.style.opacity = 0;
     document.body.appendChild(newAlert);
@@ -346,19 +358,6 @@ function showAlert(type, message, duration) {
         }, duration);
     }, 10);
 };
-
-/* function calcCrackTime() {
-    const chars = [...lowerChars, ...upperChars, ...numbersChars, ...specialChars];
-    const n = password.length;
-    const c = chars.length;
-    const r = 1000000000; // Tasa de descifrado de 1 billón de intentos por segundo
-    const t = (Math.pow(c, n) / r).toFixed(2);
-    let a = (t / (60 * 60 * 24 * 365)).toFixed(2);
-    if (a > 1) {
-        a = Math.round(a);
-    };
-    return a;
-};  */
 
 function calcCrackTime() {
     const n = password.length;

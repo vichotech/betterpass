@@ -10,12 +10,12 @@
     <link type="image/png" sizes="32x32" rel="icon" href="assets/img/icons8-password-3-32.png">
 </head>
 
-<body class="c-n95 o-hidden">
+<body class="c-n95 ff-p o-hidden">
     <div class="mesh-gradient"></div>
     <main class="h100 p4 flex flex-col f-jc-sb f-ai-center g2">
-        <header class="main-header flex flex-row f-jc-sb z1">
+        <header class="main-header w100 flex flex-row f-jc-sb z1">
             <h1 class="c-p50">BetterPass</h1>
-            <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="svg-icon svg-icon-m settings-toggle">
+            <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="settings-toggle w6">
         </header>
 
         <!-- PASSWORD CONTAINER -->
@@ -29,41 +29,41 @@
         <!-- <p class="password-strength c-p50">Password will take <span id="crack-time">some time</span> to crack</p> -->
 
         <!-- SETTINGS -->
-        <div class="settings p4 flex flex-col g2 br5 fixed t50 tr-tx0 tr-ty-50 t-cb z2" id="settings">
+        <div class="settings bg-a10 bf-blur2 p4 bd-a10-1-s br5 flex flex-col g2 fixed t50 tr-tx0 tr-ty-50 t-cb z2" id="settings">
             <p class="settings-title c-p50">Settings</p>
 
             <!-- CHECKBOXES -->
             <div class="checkbox-frames-cont flex flex-col">
-                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
-                    <label for="include-lower">Lowercase</label>
-                    <input type="checkbox" name="include-lower" id="include-lower" checked/>
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+                    <label for="include-lower" class="lh10">Lowercase</label>
+                    <input type="checkbox" name="include-lower" id="include-lower" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked/>
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
-                    <label for="include-upper">Uppercase</label>
-                    <input type="checkbox" name="include-upper" id="include-upper" checked />
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+                    <label for="include-upper" class="lh10">Uppercase</label>
+                    <input type="checkbox" name="include-upper" id="include-upper" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked />
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
-                    <label for="include-numbers">Numbers</label>
-                    <input type="checkbox" name="include-numbers" id="include-numbers" checked/>
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+                    <label for="include-numbers" class="lh10">Numbers</label>
+                    <input type="checkbox" name="include-numbers" id="include-numbers" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked/>
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame w100 flex flex-row f-ai-center g2 c-pointer">
-                    <label for="include-special">Special characters</label>
-                    <input type="checkbox" name="include-special" id="include-special" checked/>
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+                    <label for="include-special" class="lh10">Special characters</label>
+                    <input type="checkbox" name="include-special" id="include-special" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked/>
                 </div>
             </div>
 
             <!-- FAKE SELECT -->
-            <div class="input-frame input-frame-v select-frame flex flex-col f-ai-start g1">
+            <div class="input-frame input-frame-v select-frame flex flex-col f-ai-start f-jc-sb g1">
                 <label for="fake-select">First character:</label>
                 <details class="custom-select w100 relative" id="fake-select">
-                    <summary class="radios flex flex-row c-pointer">
+                    <summary class="radios h10 bg-a10 bf-blur2 bd-a10-1-s br2 ff-p flex flex-row f-ai-center f-jc-sb c-pointer">
                         <p id="fake-label"></p>
-                        <i data-lucide="chevron-down" class="svg-icon svg-icon-s animated-icon"></i>
+                        <i data-lucide="chevron-down" class="animated-icon w4 t-eo2 c-pointer"></i>
                         <!-- <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon"> -->
                     </summary>
-                    <ul class="list" id="fake-options-list">
+                    <ul class="list w100 bg-a10 bf-blur3 bd-a10-1-s br2 absolute l0" id="fake-options-list">
                         <li class="opt-cont" onclick="closeDetails()">
-                            <input id="first-radio" class="fake-opt" type="radio" name="char" value="None" checked>
+                            <input id="first-radio" class="fake-opt c-pointer" type="radio" name="char" value="None" checked>
                         </li>
                     </ul>
                 </details>
@@ -72,17 +72,17 @@
             <!-- RANGE -->
             <div class="input-frame input-frame-v flex flex-col f-ai-start g1" id="length-frame">
                 <label id="length-label" for="length-input">Password length: </label>
-                <input class="br2" type="range" name="length-input" id="length-input" value="8" min="8" max="26">
+                <input class="h10 w100 bg-a10 bf-blur2 bd-a10-1-s br2 " type="range" name="length-input" id="length-input" value="8" min="8" max="26">
             </div>
 
             <!-- BUTTONS -->
-            <button id="done-btn" class="primary-btn settings-toggle br2">Done</button>
+            <button id="done-btn" class="primary-btn settings-toggle h10 p0-2 bg-p50 br2 c-n10 t-eo2">Done</button>
         </div>
 
         <!-- BUTTONS CONTAINER -->
-        <div class="btn-cont flex flex-row">
-            <button id="copy-btn" class="secondary-btn br2">Copy</button>
-            <button id="gen-btn" class="primary-btn br2">Generate</button>
+        <div class="btn-cont flex flex-row g2 z1">
+            <button id="copy-btn" class="secondary-btn h10 p0-2 bg-a10 bf-blur2 bd-a10-1-s br2 c-p50 t-eo2">Copy</button>
+            <button id="gen-btn" class="primary-btn h10 p0-2 bg-p50 br2 c-n10 t-eo2">Generate</button>
         </div>
     </main>
 
