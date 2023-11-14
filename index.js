@@ -1,6 +1,6 @@
 /* SELECTORS
 ================================================================= */
-const settings = document.getElementById("settings");
+const settings = document.getElementById("settings-modal-cont");
 const lowerCheck = document.getElementById("include-lower");
 const upperCheck = document.getElementById("include-upper");
 const numbersCheck = document.getElementById("include-numbers");
@@ -215,7 +215,7 @@ function createRadioElement(liClass, radioValue) {
     const radio = document.createElement("input");
     radio.classList.add("fake-opt");
     radio.classList.add("w100");
-    radio.classList.add("c-pointer");
+    radio.classList.add("cr-pointer");
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", "char");
     radio.value = radioValue;
@@ -294,7 +294,7 @@ function genPassword() {
     passCharsArray.forEach(function(c) {
         const char = document.createElement("span");
         char.classList.add("char-span");
-        char.classList.add("bg-a10");
+        char.classList.add("bg-p50-10");
         char.classList.add("bf-blur2");
         char.classList.add("bd-a10-1-s");
         char.classList.add("br2");
@@ -336,13 +336,11 @@ function showAlert(type, message, duration) {
     const newAlert = document.createElement("div");
     newAlert.classList.add("alert");
     newAlert.classList.add(`alert-${type}`);
-    newAlert.classList.add("inline");
     newAlert.classList.add("br2");
+    newAlert.classList.add("fs-l");
     newAlert.classList.add("absolute");
-    newAlert.classList.add("l50");
     newAlert.classList.add("tr-tx-50");
     newAlert.classList.add("t-eo2");
-    newAlert.classList.add("z1");
     newAlert.innerText = message;
     newAlert.style.opacity = 0;
     document.body.appendChild(newAlert);

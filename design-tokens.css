@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
-
 :root {
     /* COLOR */
     --primary-5: #001a16;
@@ -16,83 +12,24 @@
     --primary-90: #ccfff8;
     --primary-95: #e6fffc;
 
-    --neutral-0: #000;
     --neutral-5: #0d0d0d;
     --neutral-10: #1a1a1a;
-    --neutral-20: #333;
-    --neutral-30: #4d4d4d;
-    --neutral-40: #666;
-    --neutral-50: #808080;
-    --neutral-60: #999;
-    --neutral-70: #b3b3b3;
-    --neutral-80: #ccc;
-    --neutral-90: #e6e6e6;
     --neutral-95: #f2f2f2;
-    --neutral-100: #fff;
 
-    --primary-a10: #00ffdd1a;
-    --primary-a20: #0fd3;
-    --primary-a30: #00ffdd4d;
-    --primary-a40: #0fd6;
-    --primary-a50: #00ffdd80;
-    --primary-a60: #0fd9;
-    --primary-a70: #00ffddb3;
-    --primary-a80: #0fdc;
-    --primary-a90: #00ffdde6;
+    --primary-10-10: #00332c1a;
+    --primary-10-20: #00332c33;
+    --primary-10-30: #00332c4d;
+
+    --primary-50-05: #00ffdd0d;
+    --primary-50-10: #00ffdd1a;
+    --primary-50-20: #00ffdd33;
 
     /* TYPOGRAPHY */
     --ff-p: 'DM Sans', Roboto, sans-serif;          /* Primary font */
     --ff-s: 'DM Serif', serif;                      /* Secondary font */
     --ff-c: 'DM Mono', Consolas, monospace;         /* Code font */
 
-    --fs-6xl: 3.3rem;       /* ~40px */
-    --fs-5xl: 3rem;         /* 36px */
-    --fs-4xl: 2.7rem;       /* ~32px */
-    --fs-3xl: 2.3rem;       /* ~28px */
-    --fs-2xl: 2rem;         /* 24px */
-    --fs-xl: 1.7rem;        /* ~20px */
-    --fs-l: 1.3rem;         /* ~16px */
-    --fs-m: 1.2rem;         /* ~14px */
-    --fs-s: 1rem;           /* 12px */
-
-    --fw-3xl: 900;          /* Black */
-    --fw-2xl: 800;          /* ExtraBold */
-    --fw-xl: 700;           /* Bold */
-    --fw-l: 600;            /* SemiBold */
-    --fw-m: 500;            /* Medium */
-    --fw-s: 400;            /* Regular */
-    --fw-xs: 300;           /* Light */
-    --fw-2xs: 200;          /* ExtraLight */
-    --fw-3xs: 100;          /* Thin */
-
-    --f-h1: normal normal var(--fw-l) var(--fs-6xl) 3.7rem var(--ff-p);
-    --f-h2: normal normal var(--fw-l) var(--fs-5xl) 3.3rem var(--ff-p);
-    --f-h3: normal normal var(--fw-l) var(--fs-4xl) 3rem var(--ff-p);
-    --f-h4: normal normal var(--fw-l) var(--fs-3xl) 2.7rem var(--ff-p);
-    --f-h5: normal normal var(--fw-l) var(--fs-2xl) 2.3rem var(--ff-p);
-    --f-h6: normal normal var(--fw-l) var(--fs-xl) 2rem var(--ff-p);
-    --f-sub-l: normal normal var(--fw-m) var(--fs-l) 1.7rem var(--ff-p);
-    --f-sub-m: normal normal var(--fw-m) var(--fs-m) 1.3rem var(--ff-p);
-    --f-sub-s: normal normal var(--fw-m) var(--fs-s) 1.2rem var(--ff-p);
-    --f-body-l: normal normal var(--fw-s) var(--fs-l) 1.7rem var(--ff-p);
-    --f-body-m: normal normal var(--fw-s) var(--fs-m) 1.3rem var(--ff-p);
-    --f-body-s: normal normal var(--fw-s) var(--fs-s) 1.2rem var(--ff-p);
-    --f-code-l: normal normal var(--fw-s) var(--fs-l) 1.7rem var(--ff-c);
-    --f-code-m: normal normal var(--fw-s) var(--fs-m) 1.3rem var(--ff-c);
-    --f-code-s: normal normal var(--fw-s) var(--fs-s) 1.2rem var(--ff-c);
-
     /* SIZING */
-    --s-3xs: 4px;
-    --s-2xs: 8px;
-    --s-xs: 12px;
-    --s-s: 16px;
-    --s-m: 20px;
-    --s-l: 24px;
-    --s-xl: 28px;
-    --s-2xl: 32px;
-    --s-3xl: 36px;
-
-    /* SIZING 2 */
     --s-x: 4px;
     --s-2x: 8px;
     --s-3x: 12px;
@@ -103,17 +40,4 @@
     --s-8x: 32px;
     --s-9x: 36px;
     --s-10x: 40px;
-
-    /* RADIUS */
-    --r-50: 50%;         /* Only when height = width */
-    --r-x: var(--s-x);
-    --r-2x: var(--s-2x);
-    --r-3x: var(--s-3x);
-    --r-4x: var(--s-4x);
-    --r-5x: var(--s-5x);
-    --r-6x: var(--s-6x);
-    --r-7x: var(--s-7x);
-    --r-8x: var(--s-8x);
-    --r-9x: var(--s-9x);
-    --r-10x: var(--s-10x);
 }

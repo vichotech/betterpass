@@ -42,34 +42,32 @@ body {
     text-align: center;
 }
 
-.settings {
-    --width: 280px;
-    width: var(--width);
-    right: calc(0vw - var(--width));
-}
-
-.settings.active {
-    right: var(--s-xs);
-    transform: translateX(0);
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-}
-
-.settings-title, .password-strength {
-    font-size: var(--fs-xl);
-    font-weight: var(--fw-m);
-}
-
 #crack-time {
     text-shadow: 0 0 20px var(--primary-50);
+}
+
+/* MODALS
+================================================================= */
+.modal-cont {
+    display: none;
+    top: 0;
+    opacity: 0;
+}
+
+.modal-cont.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal {
+    width: 280px;
+    background: transparent;
+    align-items: start;
+    overflow: hidden;
+}
+
+.modal-title, .password-strength {
+    font-weight: 500;
 }
 
 .input-frame-v > input {
@@ -81,13 +79,14 @@ label {
     user-select: none;
 }
 
+/* BUTTONS
+================================================================= */
 .btn-cont {
     max-width: 100%;
 }
 
 button {
     font-family: var(--ff-p);
-    font-size: var(--fs-l);
     border-style: none;
 }
 
@@ -97,15 +96,15 @@ button:hover {
 
 button.secondary-btn:hover {
     color: var(--primary-50);
-    background: var(--primary-a20);
-    backdrop-filter: blur(var(--s-2xs));
-    border: var(--primary-a10) 1px solid;
+    background: var(--primary-50-20);
+    backdrop-filter: blur(var(--s-2x));
+    border: var(--primary-50-10) 1px solid;
 }
 
 /* CHECKBOXES
 ================================================================= */
 .checkbox-frame {
-    border: var(--primary-a10) 1px solid;
+    border: var(--primary-50-10) 1px solid;
     border-bottom: none;
 }
 
@@ -123,7 +122,7 @@ button.secondary-btn:hover {
     -moz-border-radius: 0 0 8px 8px;
     -ms-border-radius: 0 0 8px 8px;
     -o-border-radius: 0 0 8px 8px;
-    border: var(--primary-a10) 1px solid; /*? Is fixed? */
+    border: var(--primary-50-10) 1px solid;
 }
 
 .checkbox-frame label {
@@ -281,14 +280,14 @@ ul.list {
     bottom: 44px;
     padding: 0 8px;
     margin: 0;
-    max-height: 165px;
+    max-height: 213px;
     overflow-y: auto;
 }
 
 ul.list li {
     list-style: none;
     line-height: 40px;
-	border-bottom: var(--primary-a10) 1px solid;
+	border-bottom: var(--primary-50-10) 1px solid;
 }
 
 ul.list li:first-child {
@@ -318,9 +317,10 @@ ul.list li:last-child {
 /* ALERTS / TOASTS
 ================================================================= */
 .alert {
-    font-size: var(--fs-l);
     padding: var(--s-2x) var(--s-3x);
-    top: 72px;
+    top: 32px;
+    left: 50%;
+    z-index: 12;
 }
 
 .alert-success {
@@ -381,47 +381,7 @@ ul.list li:last-child {
 
 @media (max-width: 720px) {
     #empty-state {
-        font-size: var(--fs-xl);
-    }
-}
-
-@media (max-width: 720px) {
-    .settings {
-        width: 100%;
-        padding: var(--s-m);
-        gap: var(--s-xs);
-        border-radius: var(--s-m) var(--s-m) 0 0;
-        -webkit-border-radius: var(--s-m) var(--s-m) 0 0;
-        -moz-border-radius: var(--s-m) var(--s-m) 0 0;
-        -ms-border-radius: var(--s-m) var(--s-m) 0 0;
-        -o-border-radius: var(--s-m) var(--s-m) 0 0;
-        right: 0;
-        transform: translateX(0);
-        -webkit-transform: translateX(0);
-        -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
-        -o-transform: translateX(0);
-        top: 100%;
-        transform: translateY(0);
-        -webkit-transform: translateY(0);
-        -moz-transform: translateY(0);
-        -ms-transform: translateY(0);
-        -o-transform: translateY(0);
-    }
-    
-    .settings.active {
-        right: 0;
-        transform: translateX(0);
-        -webkit-transform: translateX(0);
-        -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
-        -o-transform: translateX(0);
-        top: 100%;
-        transform: translateY(-100%);
-        -webkit-transform: translateY(-100%);
-        -moz-transform: translateY(-100%);
-        -ms-transform: translateY(-100%);
-        -o-transform: translateY(-100%);
+        font-size: 20px;
     }
 }
 

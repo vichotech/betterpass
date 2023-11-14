@@ -8,12 +8,17 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="classes.css">
     <link type="image/png" sizes="32x32" rel="icon" href="assets/img/icons8-password-3-32.png">
+
+    <!-- IMPORTING GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 </head>
 
 <body class="c-n95 ff-p o-hidden">
     <div class="mesh-gradient"></div>
-    <main class="h100 p4 flex flex-col f-jc-sb f-ai-center g2">
-        <header class="main-header w100 flex flex-row f-jc-sb z1">
+    <main class="h100 p4 flex flex-col f-jc-space f-ai-center g2">
+        <header class="main-header w100 flex flex-row f-jc-space z1">
             <h1 class="c-p50">BetterPass</h1>
             <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="settings-toggle w6">
         </header>
@@ -26,65 +31,67 @@
             </div>
         </div>
 
-        <!-- <p class="password-strength c-p50">Password will take <span id="crack-time">some time</span> to crack</p> -->
+        <!-- <p class="password-strength fs-xl c-p50">Password will take <span id="crack-time">some time</span> to crack</p> -->
 
-        <!-- SETTINGS -->
-        <div class="settings bg-a10 bf-blur2 p4 bd-a10-1-s br5 flex flex-col g2 fixed t50 tr-tx0 tr-ty-50 t-cb z2" id="settings">
-            <p class="settings-title c-p50">Settings</p>
+        <!-- BUTTONS CONTAINER -->
+        <div class="btn-cont flex flex-row g2 z1">
+            <button id="copy-btn" class="secondary-btn h10 p0_2 bg-p50-10 bf-blur2 bd-a10-1-s br2 fs-l c-p50 t-eo2">Copy</button>
+            <button id="gen-btn" class="primary-btn h10 p0_2 bg-p50 br2 fs-l c-n10 t-eo2">Generate</button>
+        </div>
+    </main>
 
+    <!-- SETTINGS MODAL -->
+    <div class="modal-cont h100 w100 bf-blur6 flex-row f-ai-center f-jc-center fixed l0 t-eo2 z3" id="settings-modal-cont">
+        <div class="modal p4 bg-p10-20 bf-blur2 bd-a10-1-s br5 c-n95 flex flex-col g3" id="settings-modal">
+            <p class="modal-title fs-xl c-p50">Settings</p>
+            
             <!-- CHECKBOXES -->
-            <div class="checkbox-frames-cont flex flex-col">
-                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+            <div class="checkbox-frames-cont w100 flex flex-col">
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2 cr-pointer">
                     <label for="include-lower" class="lh10">Lowercase</label>
-                    <input type="checkbox" name="include-lower" id="include-lower" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked/>
+                    <input type="checkbox" name="include-lower" id="include-lower" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked/>
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2">
                     <label for="include-upper" class="lh10">Uppercase</label>
-                    <input type="checkbox" name="include-upper" id="include-upper" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked />
+                    <input type="checkbox" name="include-upper" id="include-upper" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked />
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2">
                     <label for="include-numbers" class="lh10">Numbers</label>
-                    <input type="checkbox" name="include-numbers" id="include-numbers" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked/>
+                    <input type="checkbox" name="include-numbers" id="include-numbers" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked/>
                 </div>
-                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0-2 bg-a10 flex flex-row f-ai-center g2 c-pointer">
+                <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2">
                     <label for="include-special" class="lh10">Special characters</label>
-                    <input type="checkbox" name="include-special" id="include-special" class="h6 w10 br3 block relative bg-a10 bd-a10-1-s c-pointer" checked/>
+                    <input type="checkbox" name="include-special" id="include-special" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked/>
                 </div>
             </div>
 
             <!-- FAKE SELECT -->
-            <div class="input-frame input-frame-v select-frame flex flex-col f-ai-start f-jc-sb g1">
+            <div class="input-frame input-frame-v select-frame w100 flex flex-col f-ai-start f-jc-space g1">
                 <label for="fake-select">First character:</label>
                 <details class="custom-select w100 relative" id="fake-select">
-                    <summary class="radios h10 bg-a10 bf-blur2 bd-a10-1-s br2 ff-p flex flex-row f-ai-center f-jc-sb c-pointer">
+                    <summary class="radios h10 bg-p50-05 bf-blur2 bd-a10-1-s br2 ff-p flex flex-row f-ai-center f-jc-space cr-pointer">
                         <p id="fake-label"></p>
-                        <i data-lucide="chevron-down" class="animated-icon w4 t-eo2 c-pointer"></i>
+                        <i data-lucide="chevron-down" class="animated-icon w4 t-eo2 cr-pointer"></i>
                         <!-- <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon"> -->
                     </summary>
-                    <ul class="list w100 bg-a10 bf-blur3 bd-a10-1-s br2 absolute l0" id="fake-options-list">
+                    <ul class="list w100 bg-p50-05 bf-blur3 bd-a10-1-s br2 absolute l0" id="fake-options-list">
                         <li class="opt-cont" onclick="closeDetails()">
-                            <input id="first-radio" class="fake-opt c-pointer" type="radio" name="char" value="None" checked>
+                            <input id="first-radio" class="fake-opt cr-pointer" type="radio" name="char" value="None" checked>
                         </li>
                     </ul>
                 </details>
             </div>
 
             <!-- RANGE -->
-            <div class="input-frame input-frame-v flex flex-col f-ai-start g1" id="length-frame">
+            <div class="input-frame input-frame-v w100 flex flex-col f-ai-start g1" id="length-frame">
                 <label id="length-label" for="length-input">Password length: </label>
-                <input class="h10 w100 bg-a10 bf-blur2 bd-a10-1-s br2 " type="range" name="length-input" id="length-input" value="8" min="8" max="26">
+                <input class="h10 w100 bg-p50-05 bf-blur2 bd-a10-1-s br2 " type="range" name="length-input" id="length-input" value="8" min="8" max="26">
             </div>
 
             <!-- BUTTONS -->
-            <button id="done-btn" class="primary-btn settings-toggle h10 p0-2 bg-p50 br2 c-n10 t-eo2">Done</button>
+            <button id="done-btn" class="primary-btn settings-toggle h10 w100 p0_2 bg-p50 br2 fs-l c-n10 t-eo2">Done</button>
         </div>
-
-        <!-- BUTTONS CONTAINER -->
-        <div class="btn-cont flex flex-row g2 z1">
-            <button id="copy-btn" class="secondary-btn h10 p0-2 bg-a10 bf-blur2 bd-a10-1-s br2 c-p50 t-eo2">Copy</button>
-            <button id="gen-btn" class="primary-btn h10 p0-2 bg-p50 br2 c-n10 t-eo2">Generate</button>
-        </div>
-    </main>
+    </div>
 
     <!-- LUCIDE ICONS -->
     <!-- Development version -->
