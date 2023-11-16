@@ -1,4 +1,4 @@
-@import url(design-tokens.css);
+@import url(tokens.css);
 
 :root {
     --fs-l: 16px;
@@ -13,6 +13,9 @@
 }
 .h10 {
     height: var(--s-10x);
+    @media (max-width: 720px) {
+        height: 52px;
+    }
 }
 .lh10 {
     line-height: var(--s-10x);      /* Line height */
@@ -43,6 +46,9 @@
 }
 .p0_2 {
     padding: 0 var(--s-2x);
+    @media (max-width: 720px) {
+        padding: 0 var(--s-3x);
+    }
 }
 
 /* BACKGROUND */
@@ -112,15 +118,27 @@
 /* TYPOGRAPHY */
 .fs-s {
     font-size: 1rem;
+    @media (max-width: 720px) {
+        font-size: 1.3rem;
+    }
 }
 .fs-m {
     font-size: 1.15rem;
+    @media (max-width: 720px) {
+        font-size: 1.45rem;
+    }
 }
 .fs-l {
     font-size: 1.3rem;
+    @media (max-width: 720px) {
+        font-size: 1.6rem;
+    }
 }
 .fs-xl {
     font-size: 1.6rem;
+    @media (max-width: 720px) {
+        font-size: 2rem;
+    }
 }
 .fs-2xl {
     font-size: 2rem;

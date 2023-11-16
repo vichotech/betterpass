@@ -1,6 +1,6 @@
-@import url(design-tokens.css);
+@import url(tokens.css);
 
-html {font-size: 75%;} /*12px*/
+html {font-size: 75%;} /* Reset default font size to 12px */
 
 *, *::before, *::after {
     margin: 0;
@@ -75,14 +75,23 @@ body {
 }
 
 label {
-    font-size: 16px;
     user-select: none;
+}
+
+.label-padding {
+    padding: 0 4px;
 }
 
 /* BUTTONS
 ================================================================= */
 .btn-cont {
+    width: 328px;
     max-width: 100%;
+}
+
+.btn-cont button {
+    flex-basis: 0;
+    flex-grow: 1;
 }
 
 button {
@@ -90,15 +99,24 @@ button {
     border-style: none;
 }
 
-button:hover {
-    background: var(--primary-40);
+.primary-btn:hover {
+    box-shadow: 0 0 8px var(--primary-50-60);
 }
 
-button.secondary-btn:hover {
+.primary-btn:active {
+    background: var(--primary-40);
+    box-shadow: none;
+}
+
+.secondary-btn:hover {
     color: var(--primary-50);
     background: var(--primary-50-20);
     backdrop-filter: blur(var(--s-2x));
     border: var(--primary-50-10) 1px solid;
+}
+
+.secondary-btn:active {
+    background: var(--primary-50-10);
 }
 
 /* CHECKBOXES
@@ -184,7 +202,7 @@ input[type="range"]::-moz-range-track {
         padding: 8px;
         background: var(--primary-30);
         top: -12px;
-    }
+    } /* ? */
 }
 
 /* THUMB */  
@@ -196,7 +214,7 @@ input[type="range"]::-moz-range-thumb {
     -ms-progress-appearance: none;
     height: 40px;
     width: 28px;
-    background: var(--primary-30);
+    background: var(--primary-40);
     cursor: pointer;
     border: none;
     border-radius: 8px;
@@ -209,20 +227,16 @@ input[type="range"]::-moz-range-thumb {
     -moz-transition: all ease-out .2s;
     -ms-transition: all ease-out .2s;
     -o-transition: all ease-out .2s;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
 }
 
 input[type="range"]:hover::-webkit-slider-thumb,
 input[type="range"]:hover::-moz-range-thumb {
-    background-color: var(--primary-40);
+    box-shadow: 0 0 8px var(--primary-50-60);
 }
 
 input[type="range"]:active::-webkit-slider-thumb,
 input[type="range"]:active::-moz-range-thumb {
-    height: 42px;
-    width: 30px;
+    background: var(--primary-50);
 }
 
 /* FAKE SELECT
@@ -238,9 +252,7 @@ details[open] {
 /* HEADER */
 summary {
 	list-style: none;
-    font-size: 16px;
     border-style: none;
-    padding: 0 8px;
 }
 
 summary::-webkit-details-marker {
@@ -278,7 +290,6 @@ details[open] summary i {
 /* OPTIONS LIST */
 ul.list {
     bottom: 44px;
-    padding: 0 8px;
     margin: 0;
     max-height: 213px;
     overflow-y: auto;
@@ -297,17 +308,6 @@ ul.list li:first-child {
 ul.list li:last-child {
 	padding-bottom: 0;
 	border-bottom: none;
-}
-
-/* BUTTONS
-================================================================= */
-.btn-cont {
-    width: 416px;
-}
-
-.btn-cont button {
-    flex-basis: 0;
-    flex-grow: 1;
 }
 
 /* ICONS
@@ -372,20 +372,36 @@ ul.list li:last-child {
 
 /* RESPONSIVE
 ================================================================= */
+/* MOBILE (360px) */
 @media (max-width: 720px) {
     .main-header {
         padding: 0;
     }
-}
 
+    .modal {
+        width: 320px;
+    }
 
-@media (max-width: 720px) {
+    input[type=radio]:after {
+        line-height: 52px;
+        font-size: 1.6rem;
+    }
+
+    ul.list {
+        bottom: 56px;
+        max-height: 266px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb,
+    input[type="range"]::-moz-range-thumb {
+        height: 52px;
+        width: 40px;
+    }
+
     #empty-state {
         font-size: 20px;
     }
-}
 
-@media (max-width: 720px) {
     .password-cont {
         font-size: 44px;
     }
