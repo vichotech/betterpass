@@ -17,6 +17,7 @@ html {font-size: 75%;} /* Reset default font size to 12px */
 ================================================================= */
 body {
     height: 100%;
+	position: fixed;
     background: var(--neutral-10);
 }
 
