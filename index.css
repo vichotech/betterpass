@@ -1,6 +1,9 @@
 @import url(tokens.css);
 
-html {font-size: 75%;} /* Reset default font size to 12px */
+html {
+	height: 100%;
+	font-size: 75%;		/* Reset default font size to 12px */
+}
 
 *, *::before, *::after {
     margin: 0;
