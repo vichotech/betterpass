@@ -1,8 +1,8 @@
 @import 'tokens.css';
 
 html {
-    height: 100%;
-    font-size: 75%;         /* Reset default font size to 12px */
+	height: 100%;
+	font-size: 75%;		/* Reset default font size to 12px */
 }
 
 *, *::before, *::after {
@@ -24,6 +24,7 @@ html {
 ================================================================= */
 body {
     height: 100%;
+	position: fixed;
     background: var(--neutral-10);
 }
 
