@@ -20,6 +20,7 @@ const copyBtn = document.getElementById("copy-btn");
 const emptyState = document.getElementById("empty-state");
 const passText = document.querySelector(".password-cont");
 const crackTimeSpan = document.getElementById("crack-time");
+const modalBlur = document.getElementById("modal-blur");
 
 /* VARIABLES
 ================================================================= */
@@ -43,7 +44,6 @@ let includeText = "";
 
 /* ONLOAD
 ================================================================= */
-// From ChatGPT
 window.addEventListener("load", () => {    
     // Select all the checkboxes and update their relatives variables
     lowerCheck.checked = true;
@@ -55,7 +55,7 @@ window.addEventListener("load", () => {
     hasNumbers = true;
     hasSpecial = true;
     
-    // Actualizar las opciones del select 'firstCharSelect' según los caracteres seleccionados
+    // Update 'firstCharSelect' option according to the selected characters types
     updateFirstCharSelect();
 
     // Reset #length-input and #length-label
@@ -70,6 +70,7 @@ const settingsToggle = Array.from(document.querySelectorAll(".settings-toggle"))
 settingsToggle.forEach((trigger) => {
     trigger.addEventListener("click", () => {
         settings.classList.toggle("active");
+        modalBlur.classList.toggle("active");
     })
 })
 
@@ -107,8 +108,8 @@ numbersCheck.addEventListener("input", () => {
     check(numbersChars);
     alertIfAnyCheck();
     updateFirstCharSelect();
-    
 });
+
 // Toggle 'hasSpecial' variable's value according to if its input is cheched or not
 specialCheck.addEventListener("input", () => {
     hasSpecial = specialCheck.checked ? true : false;
@@ -153,7 +154,6 @@ function check(charArray) {
     }
 };
 
-// From ChatGPT
 function updateFirstCharSelect() {
     const fakeOptions = Array.from(document.querySelectorAll(".fake-opt"));
     const lowerOptions = Array.from(document.querySelectorAll(".lower-char"));
@@ -161,7 +161,7 @@ function updateFirstCharSelect() {
     const numbersOptions = Array.from(document.querySelectorAll(".number-char"));
     const specialOptions = Array.from(document.querySelectorAll(".special-char"));
   
-    // Ocultar o mostrar las opciones según los checkboxes marcados
+    // Toggle options according to the checked checkboxes
     lowerOptions.forEach((opt) => {
       opt.hidden = !lowerCheck.checked;
     });
@@ -231,7 +231,6 @@ function createRadioElement(liClass, radioValue) {
 
 function closeDetails() {
     fakeSelect.removeAttribute("open");
-    fakeOptionsList.scrollTop = 0; //! Doesn't work
 };
 
 function genPassword() {
@@ -262,7 +261,6 @@ function genPassword() {
     }
 
     passChars = passChars.concat(bindingChars);
-    //console.log(passChars);
 
     // Evaluate if there is any first chars defined
     if (!firstChar == "") {
@@ -317,19 +315,24 @@ function genPassword() {
         console.log(`Tiempo aproximado para descifrar la contraseña: < 1 año`);
     } else {
         // crackTimeSpan.innerText = `${crackTime} years`;
-        console.log(`Tiempo aproximado para descifrar la contraseña: ${crackTime} años`);
+        console.log(`Tiempo aproximado para descifrar la contraseña: ${crackTime} años 💪`);
     }
-}; //* WORKING OK 👌
+};
 
 // Copy password to clipboard
 copyBtn.addEventListener("click", () => {
-    const textToCopy = document.createElement("textarea");
-    textToCopy.value = password;
-    document.body.appendChild(textToCopy);
-    textToCopy.select();
-    document.execCommand("copy");
-    document.body.removeChild(textToCopy);
-    showAlert("success", "Password copied", 1500); // Show alert once the password is copied. See function below 👇
+    const display = window.getComputedStyle(emptyState).display;
+    if (display === "none") {
+        const textToCopy = document.createElement("textarea");
+        textToCopy.value = password;
+        document.body.appendChild(textToCopy);
+        textToCopy.select();
+        document.execCommand("copy");
+        document.body.removeChild(textToCopy);
+        showAlert("success", "Password copied", 1500); // Show alert once the password is copied. See function below 👇
+    } else {
+        showAlert("error", "Create a password before copying it", 2500);        
+    }
 });
 
 function showAlert(type, message, duration) {
@@ -359,18 +362,18 @@ function showAlert(type, message, duration) {
 
 function calcCrackTime() {
     const n = password.length;
-    let c = 0; // Variedad de caracteres
-    const r = 1000000000; // Tasa de descifrado de 1 billón de intentos por segundo
+    let c = 0; // Character variety
+    const r = 1000000000; // 1 billion attempts per second decryption rate
 
     if (hasLower) c += lowerChars.length;
     if (hasUpper) c += upperChars.length;
     if (hasNumbers) c += numbersChars.length;
     if (hasSpecial) c += specialChars.length;
 
-    // En lugar de usar una fórmula simplificada, usaremos la fórmula completa para calcular la Entropía
+    // use the full formula to calculate Entropy instead of a simplified one
     const entropy = n * Math.log2(c);
 
-    // Ahora calculamos el tiempo de crackeo
+    // Calculate the crack time
     const crackTimeSeconds = Math.pow(2, entropy) / r; 
     let crackTimeYears = (crackTimeSeconds / (60 * 60 * 24 * 365)).toFixed(2);
 

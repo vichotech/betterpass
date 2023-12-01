@@ -1,11 +1,18 @@
-@import url(tokens.css);
+@import 'tokens.css';
 
-html {font-size: 75%;} /* Reset default font size to 12px */
+html {
+    height: 100%;
+    font-size: 75%;         /* Reset default font size to 12px */
+}
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    display: none;
 }
 
 ::selection {
@@ -16,16 +23,29 @@ html {font-size: 75%;} /* Reset default font size to 12px */
 /* SECTIONING
 ================================================================= */
 body {
-    height: 100vh;
+    height: 100%;
     background: var(--neutral-10);
 }
 
 .main-header {
     padding: var(--s-x) var(--s-4x);
+    z-index: 5;
 }
 
 #empty-state p {
     text-align: center;
+}
+
+.empty-state__title {
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: 400;
+}
+
+.empty-state__title + p {
+    font-weight: 300;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
 }
 
 /* MAIN CONTENT
@@ -48,14 +68,35 @@ body {
 
 /* MODALS
 ================================================================= */
-.modal-cont {
-    display: none;
+#modal-blur {
     top: 0;
-    opacity: 0;
+    z-index: 3;
 }
 
-.modal-cont.active {
+#modal-blur.active {
+    backdrop-filter: blur(var(--s-6x));
+    z-index: 8;
+}
+
+.modal-cont {
     display: flex;
+    visibility: hidden;
+    opacity: 0;
+    top: 0;
+}
+
+/* .modal-cont::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(var(--s-6x));
+    position: absolute;
+    left: 0;
+    z-index: -1;
+} */
+
+.modal-cont.active {
+    visibility: visible;
     opacity: 1;
 }
 
@@ -85,8 +126,8 @@ label {
 /* BUTTONS
 ================================================================= */
 .btn-cont {
-    width: 328px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 400px;
 }
 
 .btn-cont button {
@@ -95,6 +136,7 @@ label {
 }
 
 button {
+    font-weight: 500;
     font-family: var(--ff-p);
     border-style: none;
 }
@@ -185,6 +227,8 @@ input[type="checkbox"]:checked:after {
 /* RANGES
 ================================================================= */
 input[type="range"] {
+    appearance: none;
+    -webkit-appearance: none;
     padding: 0;
 }
 
@@ -192,50 +236,90 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-runnable-track,
 input[type="range"]::-moz-range-track {
     appearance: none;
-    -ms-progress-appearance: none;
     -webkit-appearance: none;
+    -ms-progress-appearance: none;
     outline: none;
     position: relative;
 
-    &::after {
+    /* &::after {
         content: "after";
         padding: 8px;
         background: var(--primary-30);
         top: -12px;
-    } /* ? */
+    } */
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer; 
+    /* Hides the slider so custom styles can be added */
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
 }
 
 /* THUMB */  
-input[type="range"]::-webkit-slider-thumb,
 input[type="range"]::-moz-range-thumb {
     appearance: none;
-    -webkit-appearance: none;
     -moz-appearance: none;
-    -ms-progress-appearance: none;
     height: 40px;
     width: 28px;
     background: var(--primary-40);
     cursor: pointer;
     border: none;
     border-radius: 8px;
-    -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
     transition: all ease-out .2s;
-    -webkit-transition: all ease-out .2s;
     -moz-transition: all ease-out .2s;
-    -ms-transition: all ease-out .2s;
-    -o-transition: all ease-out .2s;
 }
 
-input[type="range"]:hover::-webkit-slider-thumb,
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 40px;
+    width: 28px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    background: var(--primary-40);
+    cursor: pointer;
+    margin-top: 0; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    transition: all ease-out .2s;
+    -webkit-transition: all ease-out .2s;
+}
+
+input[type=range]::-ms-thumb {
+    -ms-progress-appearance: none;
+    height: 40px;
+    width: 28px;
+    border-radius: 8px;
+    -ms-border-radius: 8px;
+    background: var(--primary-40);
+    cursor: pointer;
+    margin-top: 0; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    transition: all ease-out .2s;
+    -ms-transition: all ease-out .2s;
+}
+
 input[type="range"]:hover::-moz-range-thumb {
     box-shadow: 0 0 8px var(--primary-50-60);
 }
 
-input[type="range"]:active::-webkit-slider-thumb,
+input[type="range"]:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 8px var(--primary-50-60);
+}
+
+input[type="range"]:hover::-ms-thumb {
+    box-shadow: 0 0 8px var(--primary-50-60);
+}
+
 input[type="range"]:active::-moz-range-thumb {
+    background: var(--primary-50);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+    background: var(--primary-50);
+}
+
+input[type="range"]:active::-ms-thumb {
     background: var(--primary-50);
 }
 
@@ -277,6 +361,7 @@ input[type=radio]:after {
     line-height: 40px;
     font-family: 'DM Sans';
 	font-size: 16px;
+    color: var(--primary-95);
 }
 
 details[open] summary i {
@@ -312,7 +397,20 @@ ul.list li:last-child {
 
 /* ICONS
 ================================================================= */
+i {
+    height: 20px;
+    width: 20px;
+    transition: all ease-out 0.2s;
+    -webkit-transition: all ease-out 0.2s;
+    -moz-transition: all ease-out 0.2s;
+    -ms-transition: all ease-out 0.2s;
+    -o-transition: all ease-out 0.2s;
+}
 
+i.chevron-down {
+    background-image: url(./assets/svg/chevron-down.svg);
+    background-size: contain;
+}
 
 /* ALERTS / TOASTS
 ================================================================= */
@@ -341,7 +439,7 @@ ul.list li:last-child {
 /* MESH GRADIENT BG
 ================================================================= */
 .mesh-gradient {
-  --size: 250px;
+  --size: 360px;
   --speed: 25s;
   --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
   width: var(--size);
@@ -392,10 +490,14 @@ ul.list li:last-child {
         max-height: 266px;
     }
 
-    input[type="range"]::-webkit-slider-thumb,
     input[type="range"]::-moz-range-thumb {
         height: 52px;
-        width: 40px;
+        width: 32px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        height: 52px;
+        width: 32px;
     }
 
     #empty-state {
@@ -413,6 +515,6 @@ ul.list li:last-child {
 
 @media (min-width: 720px) {
     .mesh-gradient {
-      --size: 700px;
+      --size: 720px;
     }
 }

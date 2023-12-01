@@ -1,4 +1,4 @@
-@import url(tokens.css);
+@import 'tokens.css';
 
 :root {
     --fs-l: 16px;
@@ -52,28 +52,43 @@
 }
 
 /* BACKGROUND */
+.bg-p10 {
+    background-color: var(--primary-10);
+}
+.bg-p20-90 {
+    background-color: var(--primary-20-90);
+}
 .bg-p50 {
-    background: var(--primary-50);
+    background-color: var(--primary-50);
+}
+.bg-p80 {
+    background-color: var(--primary-80);
 }
 .bg-p50-05 {
-    background: var(--primary-50-05);
+    background-color: var(--primary-50-05);
 }
 .bg-p50-10 {
-    background: var(--primary-50-10);
+    background-color: var(--primary-50-10);
+}
+.bg-p50-40 {
+    background-color: var(--primary-50-40);
 }
 .bg-p10-20 {
-    background: var(--primary-10-20);
+    background-color: var(--primary-10-20);
 }
 
 /* BACKGROUND FILTER */
 .bf-blur2 {
     backdrop-filter: blur(var(--s-2x));
+    -webkit-backdrop-filter: blur(200px);
 }
 .bf-blur3 {
     backdrop-filter: blur(var(--s-3x));
+    -webkit-backdrop-filter: blur(var(--s-3x));
 }
 .bf-blur6 {
     backdrop-filter: blur(var(--s-6x));
+    -webkit-backdrop-filter: blur(600px);
 }
 
 /* BORDER */
@@ -246,6 +261,14 @@
     -moz-transition: all ease-out 0.2s;
     -ms-transition: all ease-out 0.2s;
     -o-transition: all ease-out 0.2s;
+}
+
+.t-eo4 {
+    transition: all ease-out 0.4s;
+    -webkit-transition: all ease-out 0.4s;
+    -moz-transition: all ease-out 0.4s;
+    -ms-transition: all ease-out 0.4s;
+    -o-transition: all ease-out 0.4s;
 }
 
 /* OTHERS */

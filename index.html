@@ -12,21 +12,21 @@
     <!-- IMPORTING GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 </head>
 
 <body class="c-n95 ff-p o-hidden">
     <div class="mesh-gradient"></div>
     <main class="h100 p4 flex flex-col f-jc-space f-ai-center g2">
-        <header class="main-header w100 flex flex-row f-jc-space z1">
+        <header class="main-header w100 flex flex-row f-jc-space">
             <h1 class="c-p50">BetterPass</h1>
             <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="settings-toggle w6">
         </header>
 
         <!-- PASSWORD CONTAINER -->
-        <div class="password-cont c-p50 z2">
-            <div class="flex flex-col f-ai-center c-n95 fs-2xl" id="empty-state">
-                <p>You've not created any passwords yet.</p>
+        <div class="password-cont c-p50 z1">
+            <div class="flex flex-col f-ai-center c-n95 fs-2xl g2" id="empty-state">
+                <p class="empty-state__title">You've not created any passwords yet.</p>
                 <p>Press <span class="command c-p50">'Generate'</span> to start.</p>
             </div>
         </div>
@@ -41,9 +41,12 @@
         </div>
     </main>
 
+    <!-- MODAL BLUR -->
+    <div id="modal-blur" class="absolute w100 h100 t-eo2"></div>
+
     <!-- SETTINGS MODAL -->
-    <div class="modal-cont h100 w100 bf-blur6 flex-row f-ai-center f-jc-center fixed l0 t-eo2 z3" id="settings-modal-cont">
-        <div class="modal p4 bg-p10-20 bf-blur2 bd-a10-1-s br5 c-n95 flex flex-col g3" id="settings-modal">
+    <div class="modal-cont h100 w100 flex-row f-ai-center f-jc-center fixed l0 t-eo4 z3" id="settings-modal-cont">
+        <div class="modal p4 bg-p10-20 bd-a10-1-s br5 c-n95 flex flex-col g3" id="settings-modal">
             <p class="modal-title fs-xl fs-xl c-p50">Settings</p>
             
             <!-- CHECKBOXES -->
@@ -72,12 +75,12 @@
                 <details class="custom-select w100 relative" id="fake-select">
                     <summary class="radios h10 p0_2 bg-p50-05 bf-blur2 bd-a10-1-s br2 ff-p flex flex-row f-ai-center f-jc-space cr-pointer">
                         <p id="fake-label" class="fs-l"></p>
-                        <i data-lucide="chevron-down" class="animated-icon w4 t-eo2 cr-pointer"></i>
+                        <i class="chevron-down"></i>
                         <!-- <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon"> -->
                     </summary>
-                    <ul class="list w100 p0_2 bg-p50-05 bf-blur3 bd-a10-1-s br2 absolute l0" id="fake-options-list">
+                    <ul class="list w100 p0_2 bg-p50-10 bf-blur3 bd-a10-1-s br2 absolute l0" id="fake-options-list">
                         <li class="opt-cont" onclick="closeDetails()">
-                            <input id="first-radio" class="fake-opt cr-pointer" type="radio" name="char" value="None" checked>
+                            <input id="first-radio" class="fake-opt cr-pointer w100" type="radio" name="char" value="None" checked>
                         </li>
                     </ul>
                 </details>
@@ -94,6 +97,8 @@
         </div>
     </div>
 
+    <script src="index.js"></script>
+
     <!-- LUCIDE ICONS -->
     <!-- Development version -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -102,8 +107,6 @@
     <script>
         lucide.createIcons();
     </script>
-
-    <script src="index.js"></script>
 </body>
 
 </html>
