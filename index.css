@@ -408,7 +408,7 @@ i.chevron-down {
 #toasts-cont {
     width: calc(100% - 32px);
     max-width: 400px;
-    top: 76px;
+    top: 60px;
 }
 
 .toast {
