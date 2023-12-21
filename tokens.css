@@ -45,4 +45,7 @@
     --s-8x: 32px;
     --s-9x: 36px;
     --s-10x: 40px;
+
+    /* EASING */
+    --bez: cubic-bezier(.08,.82,.17,1);
 }

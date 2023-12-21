@@ -22,6 +22,8 @@ const passText = document.querySelector(".password-cont");
 const crackTimeSpan = document.getElementById("crack-time");
 const modalBlur = document.getElementById("modal-blur");
 
+const toastsCont = document.getElementById("toasts-cont");
+
 /* VARIABLES
 ================================================================= */
 const lowerChars = "abcdefghijklmnñopqrstuvwxyz".split("");
@@ -90,7 +92,7 @@ lengthInput.addEventListener("input", () => {
 lowerCheck.addEventListener("input", () => {
     hasLower = lowerCheck.checked ? true : false;
     check(lowerChars);
-    alertIfAnyCheck();
+    showToastIfAnyCheck();
     updateFirstCharSelect();
 });
 
@@ -98,7 +100,7 @@ lowerCheck.addEventListener("input", () => {
 upperCheck.addEventListener("input", () => {
     hasUpper = upperCheck.checked ? true : false;
     check(upperChars);
-    alertIfAnyCheck();
+    showToastIfAnyCheck();
     updateFirstCharSelect();
 });
 
@@ -106,7 +108,7 @@ upperCheck.addEventListener("input", () => {
 numbersCheck.addEventListener("input", () => {
     hasNumbers = numbersCheck.checked ? true : false;
     check(numbersChars);
-    alertIfAnyCheck();
+    showToastIfAnyCheck();
     updateFirstCharSelect();
 });
 
@@ -114,7 +116,7 @@ numbersCheck.addEventListener("input", () => {
 specialCheck.addEventListener("input", () => {
     hasSpecial = specialCheck.checked ? true : false;
     check(specialChars);
-    alertIfAnyCheck();
+    showToastIfAnyCheck();
     updateFirstCharSelect();
 });
 
@@ -122,7 +124,11 @@ specialCheck.addEventListener("input", () => {
 genBtn.addEventListener("click", () => {
     // Verify if there's any selected checkboxes
     if(!hasLower && !hasUpper && !hasNumbers && !hasSpecial) {
-        showAlert("error", "At least one type of characters must be selected", 3000); // Show alert once the password is copied. See function below 👇
+        showToast({
+            type: "error",
+            title: "Error!",
+            description: "At least one type of characters must be selected before creating a new password."
+        }); // Show toast once the password is copied. See function below 👇
     } else {
         // Create an array with every .char-span
         let finalChars = document.querySelectorAll(".char-span");
@@ -141,9 +147,13 @@ genBtn.addEventListener("click", () => {
     }
 });
 
-function alertIfAnyCheck() {
+function showToastIfAnyCheck() {
     if(!hasLower && !hasUpper && !hasNumbers && !hasSpecial) {
-        showAlert("warning", "Select at least one type of characters", 2500); // Show alert once the password is copied. See function below 👇
+        showToast({
+            type: "warning",
+            title: "Warning!",
+            description: "Select at least one type of characters."
+        }); // Show toast once the password is copied. See function below 👇
     }
 };
 
@@ -309,14 +319,14 @@ function genPassword() {
         passText.appendChild(char);
     });
 
-    const crackTime = calcCrackTime();
+    /* const crackTime = calcCrackTime();
     if (crackTime < 1) {
         // crackTimeSpan.innerText = "< 1 year"
         console.log(`Tiempo aproximado para descifrar la contraseña: < 1 año`);
     } else {
         // crackTimeSpan.innerText = `${crackTime} years`;
         console.log(`Tiempo aproximado para descifrar la contraseña: ${crackTime} años 💪`);
-    }
+    } */
 };
 
 // Copy password to clipboard
@@ -329,35 +339,157 @@ copyBtn.addEventListener("click", () => {
         textToCopy.select();
         document.execCommand("copy");
         document.body.removeChild(textToCopy);
-        showAlert("success", "Password copied", 1500); // Show alert once the password is copied. See function below 👇
+        showToast({
+            type: "success",
+            title: "Success!",
+            description: "Password copied to clipboard."
+        }); // Show toast once the password is copied. See function below 👇
     } else {
-        showAlert("error", "Create a password before copying it", 2500);        
+        showToast({
+            type: "error",
+            title: "Error!",
+            description: "Create a password before copying it."
+        });        
     }
 });
 
-function showAlert(type, message, duration) {
-    const newAlert = document.createElement("div");
-    newAlert.classList.add("alert");
-    newAlert.classList.add(`alert-${type}`);
-    newAlert.classList.add("br2");
-    newAlert.classList.add("fs-l");
-    newAlert.classList.add("absolute");
-    newAlert.classList.add("tr-tx-50");
-    newAlert.classList.add("t-eo2");
-    newAlert.innerText = message;
-    newAlert.style.opacity = 0;
-    document.body.appendChild(newAlert);
+function showToast({type, title, description}) {
+    const toast = document.createElement("div");
 
-    // Remove .alert past timeout
-    setTimeout(() => {
-        newAlert.style.opacity = 1;
-        setTimeout(() => {
-            newAlert.style.opacity = 0;
-            setTimeout(() => {
-                newAlert.remove();
-            }, 200);
-        }, duration);
-    }, 10);
+    // Classes
+    const classes = [
+        "toast",
+        `toast-${type}`,
+        "relative",
+        "p--3",
+        "flex",
+        "f-jc-space",
+        "f-ai-start",
+        "g3",
+        "br2",
+        "o-hidden"
+    ];
+    classes.forEach(c => {
+        toast.classList.add(c);
+    });
+    
+    // Asign random ID
+    const now = Date.now();
+    const randomNum = Math.floor(Math.random() * 100);
+    const toastID = now + randomNum;
+    toast.id = toastID;
+
+    // Icons
+    const icons = {
+        success:    `<svg 
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                        <path d="M9 12l2 2l4 -4" />
+                    </svg>`,
+        warning:    `<svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        >
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                        <line x1="12" x2="12" y1="9" y2="13" />
+                        <line x1="12" x2="12.01" y1="17" y2="17" />
+                    </svg>`,
+        error:      `<svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        >
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" x2="12" y1="8" y2="12" />
+                        <line x1="12" x2="12.01" y1="16" y2="16" />
+                    </svg>`
+    }
+
+    // Template
+    const template =    `<div class="toast__main-layer flex f-ai-start g2">
+                            ${icons[type]}
+                            <div class="toast__text-cont flex f-d--col g1">
+                                <p class="toast__title t_sub-l">${title}</p>
+                                <p class="toast__description t_body-s">${description}</p>
+                            </div>
+                        </div>
+                        <button class="toast__btn cr-pointer">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#f2f2f2"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M18 6l-12 12m0 -12l12 12" />
+                            </svg>
+                        </button>`;
+    toast.innerHTML = template;
+    
+    const toastCountdown = document.createElement("div");
+    toastCountdown.classList.add("toast__countdown");
+    toast.appendChild(toastCountdown);
+
+    // Functions
+    const fadeToast = (id) => {
+        document.getElementById(id)?.classList.add("fade");
+    };
+    const closeToast = (e) => {
+        if (e.animationName === "fade") {
+            toast.removeEventListener("animationend", closeToast);
+            toast.remove();
+        }
+    };
+    const autoCloseToast = (e) => {
+        if (e.animationName === "countdown") {
+            toastCountdown.removeEventListener("animationend", autoCloseToast);
+        }
+        fadeToast(toastID);
+    };
+
+    // Events
+    toast.addEventListener("click", (e) => {
+        if (e.target.closest("button.toast__btn")) {
+            fadeToast(toastID);
+        }
+    });
+    toast.addEventListener("animationend", closeToast);
+    toastCountdown.addEventListener("animationend", autoCloseToast);
+
+    // Animation
+    const SPEED = 120;
+    const duration = description.length * SPEED;
+    toastCountdown.style.animationDuration = `${duration}ms`;    
+
+    toastsCont.appendChild(toast);
 };
 
 function calcCrackTime() {

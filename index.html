@@ -15,19 +15,19 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 </head>
 
-<body class="c-n95 ff-p o-hidden">
-    <div class="mesh-gradient"></div>
-    <main class="h100 p4 flex flex-col f-jc-space f-ai-center g2">
+<body class=" w100 c-n95 ff-p o-hidden">
+    <!-- <div class="mesh-gradient"></div> -->
+    <main class="h100 p4 flex f-d--col f-jc-space f-ai-center g2">
         <header class="main-header w100 flex flex-row f-jc-space">
-            <h1 class="c-p50">BetterPass</h1>
+            <h1 class="t_h3 c-p50">BetterPass</h1>
             <img src="assets/svg/sliders-horizontal.svg" alt="settings" class="settings-toggle w6">
         </header>
 
         <!-- PASSWORD CONTAINER -->
         <div class="password-cont c-p50 z1">
-            <div class="flex flex-col f-ai-center c-n95 fs-2xl g2" id="empty-state">
+            <div class="flex f-d--col f-ai-center c-n95 g4" id="empty-state">
                 <p class="empty-state__title">You've not created any passwords yet.</p>
-                <p>Press <span class="command c-p50">'Generate'</span> to start.</p>
+                <p>Press <span class="command t_body-m c-p50 br1">Generate</span> to start.</p>
             </div>
         </div>
 
@@ -35,9 +35,13 @@
         <!-- <p class="password-strength fs-xl c-p50">Password will take <span id="crack-time">some time</span> to crack</p> -->
 
         <!-- BUTTONS CONTAINER -->
-        <div class="btn-cont flex flex-row g2 z1">
-            <button id="copy-btn" class="secondary-btn h10 p0_2 bg-p50-10 bf-blur2 bd-a10-1-s br2 fs-l c-p50 t-eo2 cr-pointer">Copy</button>
-            <button id="gen-btn" class="primary-btn h10 p0_2 bg-p50 br2 fs-l c-n10 t-eo2 cr-pointer">Generate</button>
+        <div class="btn-cont flex flex-row g2 z3">
+            <button id="copy-btn" class="secondary-btn h10 p0_2 bg-p50-10 bf-blur2 bd-a10-1-s br2 t_body-m c-p50 t-eo2 cr-pointer">Copy</button>
+            <button id="gen-btn" class="primary-btn h10 p0_2 bg-p50 br2 t_sub-m c-n10 t-eo2 cr-pointer">Generate</button>
+        </div>
+
+        <!-- TOASTS CONTAINER -->
+        <div id="toasts-cont" class="fixed flex f-d--col g2 t--c-b_3 z1">
         </div>
     </main>
 
@@ -46,36 +50,36 @@
 
     <!-- SETTINGS MODAL -->
     <div class="modal-cont h100 w100 flex-row f-ai-center f-jc-center fixed l0 t-eo4 z3" id="settings-modal-cont">
-        <div class="modal p4 bg-p10-20 bd-a10-1-s br5 c-n95 flex flex-col g3" id="settings-modal">
-            <p class="modal-title fs-xl fs-xl c-p50">Settings</p>
+        <div class="modal p4 bg-p10-20 bd-a10-1-s br5 c-n95 flex f-d--col g3" id="settings-modal">
+            <p class="modal-title t_sub-l c-p50">Settings</p>
             
             <!-- CHECKBOXES -->
-            <div class="checkbox-frames-cont w100 flex flex-col">
+            <div class="checkbox-frames-cont w100 flex f-d--col">
                 <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2 cr-pointer">
-                    <label for="include-lower" class="fs-l lh10">Lowercase</label>
+                    <label for="include-lower" class="t_body-m lh10">Lowercase</label>
                     <input type="checkbox" name="include-lower" id="include-lower" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked/>
                 </div>
                 <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2">
-                    <label for="include-upper" class="fs-l lh10">Uppercase</label>
+                    <label for="include-upper" class="t_body-m lh10">Uppercase</label>
                     <input type="checkbox" name="include-upper" id="include-upper" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked />
                 </div>
                 <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2">
-                    <label for="include-numbers" class="fs-l lh10">Numbers</label>
+                    <label for="include-numbers" class="t_body-m lh10">Numbers</label>
                     <input type="checkbox" name="include-numbers" id="include-numbers" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked/>
                 </div>
                 <div class="input-frame input-frame-h checkbox-frame h10 w100 p0_2 bg-p50-05 flex flex-row f-ai-center g2">
-                    <label for="include-special" class="fs-l lh10">Special characters</label>
+                    <label for="include-special" class="t_body-m lh10">Special characters</label>
                     <input type="checkbox" name="include-special" id="include-special" class="h6 w10 br3 block relative bg-p50-10 bd-a10-1-s cr-pointer" checked/>
                 </div>
             </div>
 
             <!-- FAKE SELECT -->
-            <div class="input-frame input-frame-v select-frame w100 flex flex-col f-ai-start f-jc-space g1">
-                <label for="fake-select" class="label-padding fs-s">First character:</label>
+            <div class="input-frame input-frame-v select-frame w100 flex f-d--col f-ai-start f-jc-space g1">
+                <label for="fake-select" class="label-padding t_body-s">First character:</label>
                 <details class="custom-select w100 relative" id="fake-select">
                     <summary class="radios h10 p0_2 bg-p50-05 bf-blur2 bd-a10-1-s br2 ff-p flex flex-row f-ai-center f-jc-space cr-pointer">
-                        <p id="fake-label" class="fs-l"></p>
-                        <i class="chevron-down"></i>
+                        <p id="fake-label" class="t_body-m"></p>
+                        <i class="chevron-down t-eo2"></i>
                         <!-- <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon"> -->
                     </summary>
                     <ul class="list w100 p0_2 bg-p50-10 bf-blur3 bd-a10-1-s br2 absolute l0" id="fake-options-list">
@@ -87,26 +91,17 @@
             </div>
 
             <!-- RANGE -->
-            <div class="input-frame input-frame-v w100 flex flex-col f-ai-start g1" id="length-frame">
-                <label id="length-label" class="label-padding fs-s" for="length-input">Password length: </label>
+            <div class="input-frame input-frame-v w100 flex f-d--col f-ai-start g1" id="length-frame">
+                <label id="length-label" class="label-padding t_body-s" for="length-input">Password length: </label>
                 <input class="h10 w100 bg-p50-05 bf-blur2 bd-a10-1-s br2 t-eo2" type="range" name="length-input" id="length-input" value="8" min="8" max="26">
             </div>
 
             <!-- BUTTONS -->
-            <button id="done-btn" class="primary-btn settings-toggle h10 w100 p0_2 bg-p50 br2 fs-l c-n10 t-eo2 cr-pointer">Done</button>
+            <button id="done-btn" class="primary-btn settings-toggle h10 w100 p0_2 bg-p50 br2 t_sub-m c-n10 t-eo2 cr-pointer">Done</button>
         </div>
     </div>
 
     <script src="index.js"></script>
-
-    <!-- LUCIDE ICONS -->
-    <!-- Development version -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <!-- Production version -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 
 </html>

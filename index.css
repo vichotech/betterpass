@@ -2,7 +2,7 @@
 
 html {
 	height: 100%;
-	font-size: 75%;		/* Reset default font size to 12px */
+	font-size: 62.5%;
 }
 
 *, *::before, *::after {
@@ -38,15 +38,23 @@ body {
 }
 
 .empty-state__title {
-    font-size: 2rem;
-    line-height: 2.2rem;
-    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    font-weight: 500;
+    @media (max-width: 720px) {
+        font-size: 2.6rem;
+        line-height: 2.8rem;
+    }
 }
 
 .empty-state__title + p {
-    font-weight: 300;
     font-size: 1.6rem;
+    font-weight: 300;
     line-height: 1.8rem;
+    @media (max-width: 720px) {
+        font-size: 1.8rem;
+        line-height: 2rem;
+    }
 }
 
 /* MAIN CONTENT
@@ -67,6 +75,11 @@ body {
     text-shadow: 0 0 20px var(--primary-50);
 }
 
+.command {
+    background: var(--primary-10);
+    padding: var(--s-x) var(--s-2x);
+}
+
 /* MODALS
 ================================================================= */
 #modal-blur {
@@ -85,16 +98,6 @@ body {
     opacity: 0;
     top: 0;
 }
-
-/* .modal-cont::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(var(--s-6x));
-    position: absolute;
-    left: 0;
-    z-index: -1;
-} */
 
 .modal-cont.active {
     visibility: visible;
@@ -137,7 +140,6 @@ label {
 }
 
 button {
-    font-weight: 500;
     font-family: var(--ff-p);
     border-style: none;
 }
@@ -241,13 +243,6 @@ input[type="range"]::-moz-range-track {
     -ms-progress-appearance: none;
     outline: none;
     position: relative;
-
-    /* &::after {
-        content: "after";
-        padding: 8px;
-        background: var(--primary-30);
-        top: -12px;
-    } */
 }
 
 input[type=range]::-ms-track {
@@ -401,11 +396,6 @@ ul.list li:last-child {
 i {
     height: 20px;
     width: 20px;
-    transition: all ease-out 0.2s;
-    -webkit-transition: all ease-out 0.2s;
-    -moz-transition: all ease-out 0.2s;
-    -ms-transition: all ease-out 0.2s;
-    -o-transition: all ease-out 0.2s;
 }
 
 i.chevron-down {
@@ -413,59 +403,104 @@ i.chevron-down {
     background-size: contain;
 }
 
-/* ALERTS / TOASTS
+/* TOASTS
 ================================================================= */
-.alert {
-    padding: var(--s-2x) var(--s-3x);
-    top: 32px;
-    left: 50%;
-    z-index: 12;
+#toasts-cont {
+    width: calc(100% - 32px);
+    max-width: 400px;
+    top: 76px;
 }
 
-.alert-success {
-    background-color: #0304;
+.toast {
+    animation: open .3s var(--bez);
+}
+
+.toast__countdown {
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: currentColor;
+    animation-name: countdown;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.toast.fade {
+    animation: fade .3s ease-out forwards;
+}
+
+.toast.close {
+    animation: close 3s var(--bez) forwards;
+}
+
+.toast-success {
+    background-color: #005222;
     color: #0c0;
 }
 
-.alert-warning {
-    background-color: #da03;
+.toast-warning {
+    background-color: #5f4400;
     color: #ea0;
 }
 
-.alert-error {
-    background-color: #d004;
+.toast-error {
+    background-color: #661414;
     color: #f33;
 }
 
-/* MESH GRADIENT BG
-================================================================= */
-.mesh-gradient {
-  --size: 360px;
-  --speed: 25s;
-  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
-  width: var(--size);
-  height: var(--size);
-  background: linear-gradient(var(--primary-30), #408);
-  filter: blur(calc(var(--size) * 500));
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  -webkit-border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  -moz-border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  -ms-border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  -o-border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  position: absolute;
-  top: calc(50vh - var(--size) / 2);
-  left: calc(50vw - var(--size) / 2);
-  animation: rotate var(--speed) var(--easing) alternate infinite;
-  -webkit-animation: rotate var(--speed) var(--easing) alternate infinite;
+.toast__description {
+    color: var(--neutral-95);
 }
 
-/* ANIMATION */
-@keyframes rotate {
+.toast__text-cont {
+    width: fit-content;
+}
+
+.toast__btn {
+    color: currentColor;
+    background: transparent;
+}
+
+/* ANIMATIONS
+================================================================= */
+/* Toasts */
+@keyframes open {
     0% {
-      transform: rotate(0deg);
+      transform: translateY(-100%);
+      opacity: 0;
     }
     100% {
-      transform: rotate(360deg);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes close {
+    0% {
+        height: auto;
+    }
+    100% {
+        height: 0;
+    }
+}
+
+@keyframes countdown {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
     }
 }
 
@@ -501,21 +536,11 @@ i.chevron-down {
         width: 32px;
     }
 
-    #empty-state {
-        font-size: 20px;
-    }
-
     .password-cont {
         font-size: 44px;
     }
     
     .char-span {
         width: 44px;
-    }
-}
-
-@media (min-width: 720px) {
-    .mesh-gradient {
-      --size: 720px;
     }
 }
