@@ -144,6 +144,9 @@
 .c-n95 {
     color: var(--neutral-95);
 }
+.c--n-30 {
+    color: var(--neutral-30);
+}
 .c-n10 {
     color: var(--neutral-10);
 }
@@ -348,7 +351,7 @@
 .g3 {
     gap: var(--s-3x);
 }
-.g4 {
+.g--4 {
     gap: var(--s-4x);
 }
 .grid {
@@ -365,6 +368,13 @@
 }
 
 /* TRANSITION */
+.t--e-1 {
+    transition: all ease 0.1s;
+    -webkit-transition: all ease 0.1s;
+    -moz-transition: all ease 0.1s;
+    -ms-transition: all ease 0.1s;
+    -o-transition: all ease 0.1s;
+}
 .t-eo2 {
     transition: all ease-out 0.2s;
     -webkit-transition: all ease-out 0.2s;
@@ -372,7 +382,6 @@
     -ms-transition: all ease-out 0.2s;
     -o-transition: all ease-out 0.2s;
 }
-
 .t-eo4 {
     transition: all ease-out 0.4s;
     -webkit-transition: all ease-out 0.4s;
