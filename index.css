@@ -20,16 +20,21 @@ html {
     background: var(--primary-50);
 }
 
+a {
+    display: block;
+    text-decoration: none;
+}
+
 /* SECTIONING
 ================================================================= */
 body {
     height: 100%;
 	position: fixed;
-    background: var(--neutral-10);
+    background: var(--neutral-5);
 }
 
 .main-header {
-    padding: var(--s-x) var(--s-4x);
+    padding: var(--s-2x) var(--s-3x);
     z-index: 5;
 }
 
@@ -41,10 +46,10 @@ body {
     font-size: 2.4rem;
     line-height: 2.6rem;
     font-weight: 500;
-    @media (max-width: 720px) {
+    /* @media (max-width: 720px) {
         font-size: 2.6rem;
         line-height: 2.8rem;
-    }
+    } */
 }
 
 .empty-state__title + p {
@@ -59,16 +64,38 @@ body {
 
 /* MAIN CONTENT
 ================================================================= */
+main {
+    width: 100%;
+    max-width: 425px;
+}
+
+.bg-cont {
+    place-content: center;
+}
+
+#background {
+    width: 106%;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    overflow-wrap: break-word;
+    user-select: none;
+}
+
 .password-cont {
+    width: 100%;
     font-family: var(--ff-c);
     font-size: 94px;
 }
 
-.char-span {
-    display: inline-block;
-    width: 94px;
-    margin: var(--s-x);
+.password {
     text-align: center;
+    letter-spacing: 0.16rem;
+}
+
+.password:hover {
+    border: var(--primary-50_40) 1px solid;
 }
 
 #crack-time {
@@ -88,7 +115,8 @@ body {
 }
 
 #modal-blur.active {
-    backdrop-filter: blur(var(--s-6x));
+    background: var(--neutral-5_90);
+    backdrop-filter: blur(var(--s-2x));
     z-index: 8;
 }
 
@@ -105,10 +133,7 @@ body {
 }
 
 .modal {
-    width: 280px;
-    background: transparent;
-    align-items: start;
-    overflow: hidden;
+    width: 288px;
 }
 
 .modal-title, .password-strength {
@@ -121,10 +146,6 @@ body {
 
 label {
     user-select: none;
-}
-
-.label-padding {
-    padding: 0 4px;
 }
 
 /* BUTTONS
@@ -140,34 +161,34 @@ label {
 }
 
 button {
-    font-family: var(--ff-p);
+    font-family: var(--f-fam--p);
     border-style: none;
 }
 
 .primary-btn:hover {
-    box-shadow: 0 0 8px var(--primary-50-60);
+    background: var(--primary-70);
 }
 
 .primary-btn:active {
     background: var(--primary-40);
-    box-shadow: none;
 }
 
 .secondary-btn:hover {
-    color: var(--primary-50);
-    background: var(--primary-50-20);
-    backdrop-filter: blur(var(--s-2x));
-    border: var(--primary-50-10) 1px solid;
+    border: 1px var(--primary-50_30) solid;
 }
 
 .secondary-btn:active {
-    background: var(--primary-50-10);
+    background: var(--primary-20);
 }
 
 /* CHECKBOXES
 ================================================================= */
+.checkbox-frames-cont * {
+    cursor: pointer;
+}
+
 .checkbox-frame {
-    border: var(--primary-50-10) 1px solid;
+    border: var(--primary-50_10) 1px solid;
     border-bottom: none;
 }
 
@@ -185,16 +206,16 @@ button {
     -moz-border-radius: 0 0 8px 8px;
     -ms-border-radius: 0 0 8px 8px;
     -o-border-radius: 0 0 8px 8px;
-    border: var(--primary-50-10) 1px solid;
-}
-
-.checkbox-frame label {
-    flex-grow: 1;
+    border: var(--primary-50_10) 1px solid;
 }
 
 input[type="checkbox"] {
 	appearance: none;
     -webkit-appearance: none;
+}
+
+.checkbox-frame:hover input[type="checkbox"] {
+	border: var(--primary-50_40) 1px solid;
 }
 
 input[type="checkbox"]::after {
@@ -247,7 +268,6 @@ input[type="range"]::-moz-range-track {
 
 input[type=range]::-ms-track {
     width: 100%;
-    cursor: pointer; 
     /* Hides the slider so custom styles can be added */
     background: transparent; 
     border-color: transparent;
@@ -258,25 +278,23 @@ input[type=range]::-ms-track {
 input[type="range"]::-moz-range-thumb {
     appearance: none;
     -moz-appearance: none;
-    height: 40px;
+    height: 42px;
     width: 28px;
-    background: var(--primary-40);
-    cursor: pointer;
+    background: var(--primary-50);
     border: none;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
     transition: all ease-out .2s;
     -moz-transition: all ease-out .2s;
 }
 
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 40px;
+    height: 42px;
     width: 28px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    background: var(--primary-40);
-    cursor: pointer;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    background: var(--primary-50);
     margin-top: 0; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
     transition: all ease-out .2s;
     -webkit-transition: all ease-out .2s;
@@ -284,39 +302,30 @@ input[type=range]::-webkit-slider-thumb {
 
 input[type=range]::-ms-thumb {
     -ms-progress-appearance: none;
-    height: 40px;
+    height: 42px;
     width: 28px;
-    border-radius: 8px;
-    -ms-border-radius: 8px;
-    background: var(--primary-40);
-    cursor: pointer;
+    border-radius: 7px;
+    -ms-border-radius: 7px;
+    background: var(--primary-50);
     margin-top: 0; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
     transition: all ease-out .2s;
     -ms-transition: all ease-out .2s;
 }
 
-input[type="range"]:hover::-moz-range-thumb {
-    box-shadow: 0 0 8px var(--primary-50-60);
-}
-
-input[type="range"]:hover::-webkit-slider-thumb {
-    box-shadow: 0 0 8px var(--primary-50-60);
-}
-
-input[type="range"]:hover::-ms-thumb {
-    box-shadow: 0 0 8px var(--primary-50-60);
+input[type="range"]:hover {
+    border: 1px var(--primary-50_30) solid;
 }
 
 input[type="range"]:active::-moz-range-thumb {
-    background: var(--primary-50);
+    background: var(--primary-40);
 }
 
 input[type="range"]:active::-webkit-slider-thumb {
-    background: var(--primary-50);
+    background: var(--primary-40);
 }
 
 input[type="range"]:active::-ms-thumb {
-    background: var(--primary-50);
+    background: var(--primary-40);
 }
 
 /* FAKE SELECT
@@ -335,6 +344,10 @@ summary {
     border-style: none;
 }
 
+summary:hover {
+    border: 1px var(--primary-50_30) solid;
+}
+
 summary::-webkit-details-marker {
 	display: none;
 }
@@ -351,6 +364,10 @@ input[type=radio] {
 	appearance: none;
 }
 
+input[type=radio]:hover {
+	border: 1px var(--primary-50_50) solid;
+}
+
 input[type=radio]:after {
 	content: attr(value);
 	display: block;
@@ -358,6 +375,7 @@ input[type=radio]:after {
     font-family: 'DM Sans';
 	font-size: 16px;
     color: var(--primary-95);
+    text-align: center;
 }
 
 details[open] summary i {
@@ -370,25 +388,18 @@ details[open] summary i {
 
 /* OPTIONS LIST */
 ul.list {
-    bottom: 44px;
-    margin: 0;
-    max-height: 213px;
+    bottom: 50px;
+    max-height: 274px;
     overflow-y: auto;
 }
 
 ul.list li {
     list-style: none;
-    line-height: 40px;
-	border-bottom: var(--primary-50-10) 1px solid;
+    /* line-height: 40px; */
 }
 
-ul.list li:first-child {
-	padding-top: 0;
-}
-
-ul.list li:last-child {
-	padding-bottom: 0;
-	border-bottom: none;
+.fake-opt:checked {
+    background: var(--primary-20);
 }
 
 /* ICONS
@@ -408,7 +419,7 @@ i.chevron-down {
 #toasts-cont {
     width: calc(100% - 32px);
     max-width: 400px;
-    top: 60px;
+    top: 68px;
 }
 
 .toast {
@@ -501,46 +512,5 @@ i.chevron-down {
     }
     100% {
         width: 0;
-    }
-}
-
-/* RESPONSIVE
-================================================================= */
-/* MOBILE (360px) */
-@media (max-width: 720px) {
-    .main-header {
-        padding: 0;
-    }
-
-    .modal {
-        width: 320px;
-    }
-
-    input[type=radio]:after {
-        line-height: 52px;
-        font-size: 1.6rem;
-    }
-
-    ul.list {
-        bottom: 56px;
-        max-height: 266px;
-    }
-
-    input[type="range"]::-moz-range-thumb {
-        height: 52px;
-        width: 32px;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-        height: 52px;
-        width: 32px;
-    }
-
-    .password-cont {
-        font-size: 44px;
-    }
-    
-    .char-span {
-        width: 44px;
     }
 }

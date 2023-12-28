@@ -1,5 +1,6 @@
 /* SELECTORS
 ================================================================= */
+const background = document.getElementById("background");
 const settings = document.getElementById("settings-modal-cont");
 const lowerCheck = document.getElementById("include-lower");
 const upperCheck = document.getElementById("include-upper");
@@ -13,12 +14,14 @@ const firstRadio = document.getElementById("first-radio");
 
 const lengthLabel = document.getElementById("length-label");
 const lengthInput = document.getElementById("length-input");
+const passNumberLabel = document.getElementById("pass-number-label");
+const passNumberInput = document.getElementById("pass-number-input");
 
 const genBtn = document.getElementById("gen-btn");
-const copyBtn = document.getElementById("copy-btn");
+const cancBtn = document.getElementById("canc-btn");
 
 const emptyState = document.getElementById("empty-state");
-const passText = document.querySelector(".password-cont");
+const passCont = document.querySelector(".password-cont");
 const crackTimeSpan = document.getElementById("crack-time");
 const modalBlur = document.getElementById("modal-blur");
 
@@ -32,42 +35,27 @@ const numbersChars = Array.from("0123456789");
 const specialChars = "¡!\"#$%&'()*+,-./:;<=>¿?@[\\]^_`{}~".split("");
 const chars = lowerChars.concat(upperChars, numbersChars, specialChars);
 
-let length;
+let numberOfPass = 1;
+let length = 8;
 let password = "";
 
-let hasLower;
-let hasUpper;
-let hasNumbers;
-let hasSpecial;
+let hasLower = true;
+let hasUpper = true;
+let hasNumbers = true;
+let hasSpecial = true;
 
 let firstChar = "";
 let lastChar = "";
 let includeText = "";
 
-/* ONLOAD
-================================================================= */
-window.addEventListener("load", () => {    
-    // Select all the checkboxes and update their relatives variables
-    lowerCheck.checked = true;
-    upperCheck.checked = true;
-    numbersCheck.checked = true;
-    specialCheck.checked = true;
-    hasLower = true;
-    hasUpper = true;
-    hasNumbers = true;
-    hasSpecial = true;
-    
-    // Update 'firstCharSelect' option according to the selected characters types
-    updateFirstCharSelect();
-
-    // Reset #length-input and #length-label
-    lengthInput.value = 8;
-    lengthLabel.textContent = `Password length: ${lengthInput.value}`;
-    fakeLabel.innerText = "None";
-});
-
 /* EVENTS
 ================================================================= */
+window.addEventListener("load", () => {
+    showBg();
+    resetSettings();
+    updateFirstCharSelect();
+});
+
 const settingsToggle = Array.from(document.querySelectorAll(".settings-toggle"));
 settingsToggle.forEach((trigger) => {
     trigger.addEventListener("click", () => {
@@ -81,18 +69,26 @@ firstRadio.addEventListener("click", function() {
         firstChar = "";
         fakeLabel.innerText = this.value;
     };
+    setTimeout(closeDetails, 400);
+});
+
+// Show #pass-number-input value in #pass-number-label in real time
+passNumberInput.addEventListener("input", () => {
+    numberOfPass = passNumberInput.value;
+    passNumberLabel.textContent = `Passwords: ${numberOfPass}`;
 });
 
 // Show #length-input value in #lenght-label in real time
 lengthInput.addEventListener("input", () => {
-    lengthLabel.textContent = `Password length: ${lengthInput.value}`;
+    length = lengthInput.value;
+    lengthLabel.textContent = `Length: ${length}`;
 });
 
 // Toggle 'hasLower' variable's value according to if its input is cheched or not
 lowerCheck.addEventListener("input", () => {
     hasLower = lowerCheck.checked ? true : false;
     check(lowerChars);
-    showToastIfAnyCheck();
+    showToastIfAnyChecks();
     updateFirstCharSelect();
 });
 
@@ -100,7 +96,7 @@ lowerCheck.addEventListener("input", () => {
 upperCheck.addEventListener("input", () => {
     hasUpper = upperCheck.checked ? true : false;
     check(upperChars);
-    showToastIfAnyCheck();
+    showToastIfAnyChecks();
     updateFirstCharSelect();
 });
 
@@ -108,7 +104,7 @@ upperCheck.addEventListener("input", () => {
 numbersCheck.addEventListener("input", () => {
     hasNumbers = numbersCheck.checked ? true : false;
     check(numbersChars);
-    showToastIfAnyCheck();
+    showToastIfAnyChecks();
     updateFirstCharSelect();
 });
 
@@ -116,11 +112,14 @@ numbersCheck.addEventListener("input", () => {
 specialCheck.addEventListener("input", () => {
     hasSpecial = specialCheck.checked ? true : false;
     check(specialChars);
-    showToastIfAnyCheck();
+    showToastIfAnyChecks();
     updateFirstCharSelect();
 });
 
-// Event when clicking #gen-btn
+cancBtn.addEventListener("click", () => {
+    setTimeout(resetSettings, 400);
+});
+
 genBtn.addEventListener("click", () => {
     // Verify if there's any selected checkboxes
     if(!hasLower && !hasUpper && !hasNumbers && !hasSpecial) {
@@ -128,26 +127,69 @@ genBtn.addEventListener("click", () => {
             type: "error",
             title: "Error!",
             description: "At least one type of characters must be selected before creating a new password."
-        }); // Show toast once the password is copied. See function below 👇
+        });
     } else {
-        // Create an array with every .char-span
-        let finalChars = document.querySelectorAll(".char-span");
-        let finalCharsArray = [].slice.call(finalChars);
-
-        // Evaluate if the array is empty or not
-        if(finalCharsArray.length === 0) {
-            genPassword(); // See function below 👇
+        const passwords = Array.from(document.querySelectorAll(".password"));
+        if(passwords.length === 0) {
+            for(let i = 0; i < numberOfPass; i++){
+                genPassword();
+            }
         } else {
             password = ""; // Empty 'password' variable's value
-            finalCharsArray.filter(function(e) {
-                passText.removeChild(e); // Remove every .char-span
+            passwords.filter((p) => {
+                passCont.removeChild(p);
             });
-            genPassword(); // See function below 👇
+            for(let i = 0; i < numberOfPass; i++){
+                genPassword();
+            }
         }
     }
 });
 
-function showToastIfAnyCheck() {
+/* FUNCTIONS
+================================================================= */
+function showBg() {
+    background.innerText = "";
+    let chars = "";
+    const bgChars = lowerChars.concat(upperChars, numbersChars);
+    for(let i = 0; i < 100; i++) {
+        const index = Math.floor(Math.random() * bgChars.length);
+        chars += bgChars[index];
+    }
+    for(let i = 0; i < 50; i++){
+        background.innerText += chars;
+    }
+    console.log("Background loaded");
+};
+
+function resetSettings() {
+    // Select all the checkboxes and update their relatives variables
+    lowerCheck.checked = true;
+    upperCheck.checked = true;
+    numbersCheck.checked = true;
+    specialCheck.checked = true;
+    hasLower = true;
+    hasUpper = true;
+    hasNumbers = true;
+    hasSpecial = true;
+    
+    // Reset 'firstCharSelect' option
+    fakeLabel.innerText = "None";
+    firstChar = "";
+    closeDetails();
+
+    // Reset #length-input and #length-label
+    lengthInput.value = 8;
+    length = lengthInput.value;
+    lengthLabel.textContent = `Length: ${length}`;
+
+    // Reset #pass-number-input and #pass-number-label
+    passNumberInput.value = 1;
+    numberOfPass = passNumberInput.value;
+    passNumberLabel.textContent = `Passwords: ${numberOfPass}`;
+}
+
+function showToastIfAnyChecks() {
     if(!hasLower && !hasUpper && !hasNumbers && !hasSpecial) {
         showToast({
             type: "warning",
@@ -161,6 +203,7 @@ function check(charArray) {
     if (charArray.some((char) => char === firstChar)) {
         firstChar = "";
         fakeLabel.innerText = "None";
+        firstRadio.checked = true;
     }
 };
 
@@ -221,19 +264,22 @@ function createRadioElement(liClass, radioValue) {
     const li = document.createElement("li");
     li.classList.add("opt-cont");
     li.classList.add(liClass);
-    li.setAttribute("onClick", "closeDetails()");
     const radio = document.createElement("input");
-    radio.classList.add("fake-opt");
-    radio.classList.add("w100");
-    radio.classList.add("cr-pointer");
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", "char");
+    radio.classList.add("fake-opt");
+    radio.classList.add("w--100");
+    radio.classList.add("bd-rd--1");
+    radio.classList.add("bd--p-50-10_1_sd");
+    radio.classList.add("tr--a_out_4");
+    radio.classList.add("cur--pointer");
     radio.value = radioValue;
-    radio.addEventListener("click", function() {
+    radio.addEventListener("click", () => {
         if (radio.checked) {
             firstChar = radio.value;
             fakeLabel.innerText = firstChar;
         };
+        setTimeout(closeDetails, 400);
     });
     li.appendChild(radio);
     return li;
@@ -244,7 +290,6 @@ function closeDetails() {
 };
 
 function genPassword() {
-    length = lengthInput.value; // Take 'password' variable's length from #lenght-input value
     let allChars = []; // Array that will contain all the selected characters groups
     let bindingChars = []; // Array that will contain one character from every selected characters group
     let passChars = []; // Array that will contain the bindingChars[] plus as many character from allChars[] as needed to reach the password length
@@ -275,13 +320,14 @@ function genPassword() {
     // Evaluate if there is any first chars defined
     if (!firstChar == "") {
         password = firstChar;
-        // Concatenate the rest of 'password' variable's characters up to its max. length
+        // Concatenate the rest of 'password' characters up to its max. length
         for (let i = bindingChars.length; i < length - 1; i++) {
             let index = Math.floor(Math.random() * allChars.length);
             passChars.push(allChars[index]);
         }
     } else {
-        // Concatenate the rest of 'password' variable's characters up to its max. length
+        password = "";
+        // Concatenate the rest of 'password' characters up to its max. length
         for (let i = bindingChars.length; i < length; i++) {
             let index = Math.floor(Math.random() * allChars.length);
             passChars = passChars.concat(allChars[index]);
@@ -297,44 +343,48 @@ function genPassword() {
     // Hide empty state
     emptyState.style.display = "none";
 
-    // Turn every 'password' variable's character into a .char-span element
+    const passText = document.createElement("p");
+    passText.classList.add("password");
+    passText.classList.add("w--100");
+    passText.classList.add("p--2_3");
+    passText.classList.add("text_sub-l");
+    passText.classList.add("b--p-10-50");
+    passText.classList.add("bdp-f--blur-1");
+    passText.classList.add("bd--p-50-10_1_sd");
+    passText.classList.add("bd-rd--2");
+    passText.classList.add("tr--a_out_4");
+    passText.classList.add("cur--pointer");
+
     const passCharsArray = password.split("");
-    passCharsArray.forEach(function(c) {
+    passCharsArray.forEach((c) => {
         const char = document.createElement("span");
         char.classList.add("char-span");
-        char.classList.add("bg-p50-10");
-        char.classList.add("bf-blur2");
-        char.classList.add("bd-a10-1-s");
-        char.classList.add("br2");
         char.innerText = c;
-        /* if (lowerChars.includes(c)) {
+        if (lowerChars.includes(c)) {
             char.style.color = "cyan";
         } else if (upperChars.includes(c)) {
-            char.style.color = "blue";
+            char.style.color = "#0f0";
         } else if (numbersChars.includes(c)) {
             char.style.color = "#f0f";
         } else if (specialChars.includes(c)) {
-            char.style.color = "yellow";
-        } */
+            char.style.color = "#ff0";
+        }
         passText.appendChild(char);
     });
 
-    /* const crackTime = calcCrackTime();
-    if (crackTime < 1) {
-        // crackTimeSpan.innerText = "< 1 year"
-        console.log(`Tiempo aproximado para descifrar la contraseña: < 1 año`);
-    } else {
-        // crackTimeSpan.innerText = `${crackTime} years`;
-        console.log(`Tiempo aproximado para descifrar la contraseña: ${crackTime} años 💪`);
-    } */
+    // Copy password to clipboard
+    passText.addEventListener("click", (e) => {
+        copy(e.target.textContent, "Password copied to clipboard.", "Create a password before copying it.");
+    });
+
+    passCont.appendChild(passText);
 };
 
-// Copy password to clipboard
-copyBtn.addEventListener("click", () => {
+function copy(text, successMsg, errorMsg) {
     const display = window.getComputedStyle(emptyState).display;
     if (display === "none") {
         const textToCopy = document.createElement("textarea");
-        textToCopy.value = password;
+        textToCopy.value = text;
         document.body.appendChild(textToCopy);
         textToCopy.select();
         document.execCommand("copy");
@@ -342,16 +392,16 @@ copyBtn.addEventListener("click", () => {
         showToast({
             type: "success",
             title: "Success!",
-            description: "Password copied to clipboard."
+            description: successMsg
         }); // Show toast once the password is copied. See function below 👇
     } else {
         showToast({
             type: "error",
             title: "Error!",
-            description: "Create a password before copying it."
+            description: errorMsg
         });        
     }
-});
+}
 
 function showToast({type, title, description}) {
     const toast = document.createElement("div");
@@ -363,11 +413,11 @@ function showToast({type, title, description}) {
         "relative",
         "p--3",
         "flex",
-        "f-jc-space",
-        "f-ai-start",
-        "g3",
-        "br2",
-        "o-hidden"
+        "j-c--space-b",
+        "al-i--start",
+        "g--3",
+        "bd-rd--2",
+        "ov--hidden"
     ];
     classes.forEach(c => {
         toast.classList.add(c);
@@ -383,45 +433,45 @@ function showToast({type, title, description}) {
     const icons = {
         success:    `<svg 
                         xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
+                        width="22"
+                        height="22"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        >
+                    >
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                         <path d="M9 12l2 2l4 -4" />
                     </svg>`,
         warning:    `<svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
+                        width="22"
+                        height="22"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        >
+                    >
                         <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
                         <line x1="12" x2="12" y1="9" y2="13" />
                         <line x1="12" x2="12.01" y1="17" y2="17" />
                     </svg>`,
         error:      `<svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
+                        width="22"
+                        height="22"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        >
+                    >
                         <circle cx="12" cy="12" r="10" />
                         <line x1="12" x2="12" y1="8" y2="12" />
                         <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -429,14 +479,14 @@ function showToast({type, title, description}) {
     }
 
     // Template
-    const template =    `<div class="toast__main-layer flex f-ai-start g2">
+    const template =    `<div class="toast__main-layer flex al-i--start g--2">
                             ${icons[type]}
-                            <div class="toast__text-cont flex f-d--col g1">
-                                <p class="toast__title t_sub-l">${title}</p>
-                                <p class="toast__description t_body-s">${description}</p>
+                            <div class="toast__text-cont flex f-d--col g--1">
+                                <p class="toast__title text_sub-m">${title}</p>
+                                <p class="toast__description text_body-s">${description}</p>
                             </div>
                         </div>
-                        <button class="toast__btn cr-pointer">
+                        <button class="toast__btn cur--pointer">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -447,7 +497,7 @@ function showToast({type, title, description}) {
                                 stroke-width="2"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                >
+                            >
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                 <path d="M18 6l-12 12m0 -12l12 12" />
                             </svg>

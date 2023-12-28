@@ -24,22 +24,30 @@
     --neutral-90: #e6e6e6;
     --neutral-95: #f2f2f2;
 
-    --primary-10-10: #00332c1a;
-    --primary-10-20: #00332c33;
-    --primary-10-30: #00332c4d;
+    --neutral-5_90: #0d0d0de6;
 
-    --primary-20-90: #006658e6;
+    --primary-10_10: #00332c1a;
+    --primary-10_20: #00332c33;
+    --primary-10_30: #00332c4d;
+    --primary-10_40: #00332c66;
+    --primary-10_50: #00332c80;
+    --primary-10_60: #00332c99;
+    --primary-10_70: #00332cb3;
+    --primary-10_80: #00332ccc;
+    --primary-10_90: #00332ce6;
 
-    --primary-50-05: #00ffdd0d;
-    --primary-50-10: #00ffdd1a;
-    --primary-50-20: #00ffdd33;
-    --primary-50-40: #00ffdd66;
-    --primary-50-50: #00ffdd80;
-    --primary-50-60: #00ffdd99;
+    --primary-20_90: #006658e6;
+
+    --primary-50_05: #00ffdd0d;
+    --primary-50_10: #00ffdd1a;
+    --primary-50_20: #00ffdd33;
+    --primary-50_30: #00ffdd4d;
+    --primary-50_40: #00ffdd66;
+    --primary-50_50: #00ffdd80;
+    --primary-50_60: #00ffdd99;
 
     /* TYPOGRAPHY */
     --ff-p: 'DM Sans', Roboto, sans-serif;          /* Primary font */
-    --ff-s: 'DM Serif', serif;                      /* Secondary font */
     --ff-c: 'DM Mono', Consolas, monospace;         /* Code font */
 
     /* SIZING */
@@ -53,6 +61,7 @@
     --s-8x: 32px;
     --s-9x: 36px;
     --s-10x: 40px;
+    --s-11x: 44px;
 
     /* EASING */
     --bez: cubic-bezier(.08,.82,.17,1);
