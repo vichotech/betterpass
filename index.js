@@ -18,6 +18,7 @@ const passNumberLabel = document.getElementById("pass-number-label");
 const passNumberInput = document.getElementById("pass-number-input");
 
 const genBtn = document.getElementById("gen-btn");
+const doneBtn = document.getElementById("done-btn");
 const cancBtn = document.getElementById("canc-btn");
 
 const emptyState = document.getElementById("empty-state");
@@ -116,6 +117,10 @@ specialCheck.addEventListener("input", () => {
     updateFirstCharSelect();
 });
 
+doneBtn.addEventListener("click", () => {
+    closeDetails();
+})
+
 cancBtn.addEventListener("click", () => {
     setTimeout(resetSettings, 400);
 });
@@ -159,7 +164,6 @@ function showBg() {
     for(let i = 0; i < 50; i++){
         background.innerText += chars;
     }
-    console.log("Background loaded");
 };
 
 function resetSettings() {
@@ -348,7 +352,7 @@ function genPassword() {
     passText.classList.add("w--100");
     passText.classList.add("p--2_3");
     passText.classList.add("text_sub-l");
-    passText.classList.add("b--p-10-50");
+    passText.classList.add("b--p-10-30");
     passText.classList.add("bdp-f--blur-1");
     passText.classList.add("bd--p-50-10_1_sd");
     passText.classList.add("bd-rd--2");

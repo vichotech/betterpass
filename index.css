@@ -338,6 +338,10 @@ details[open] {
 	z-index: 1;
 }
 
+details[open] summary {
+	border: 1px var(--primary-50_30) solid;
+}
+
 /* HEADER */
 summary {
 	list-style: none;

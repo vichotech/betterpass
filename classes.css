@@ -69,6 +69,9 @@
 .b--p-50-10 {
     background-color: var(--primary-50_10);
 }
+.b--p-10-30 {
+    background-color: var(--primary-10_30);
+}
 .b--p-10-50 {
     background-color: var(--primary-10_50);
 }
