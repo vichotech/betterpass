@@ -121,7 +121,7 @@ function genPassword() {
     // Hide empty state
     emptyState.style.display = "none";
 
-    const passText = document.createElement("p");
+    const passText = document.createElement("button");
     passText.classList.add("password");
     passText.classList.add("w--100");
     passText.classList.add("p--2_3");
