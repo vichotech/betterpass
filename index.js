@@ -16,8 +16,8 @@ let numberOfPass = 1;
 let length = 8;
 let password = "";
 
-let hasLower = true;
 let hasUpper = true;
+let hasLower = true;
 let hasNumbers = true;
 let hasSpecial = true;
 
@@ -33,7 +33,7 @@ window.addEventListener("load", () => {
 
 genBtn.addEventListener("click", () => {
     // Verify if there's any selected checkboxes
-    if(!hasLower && !hasUpper && !hasNumbers && !hasSpecial) {
+    if(!hasUpper && !hasLower && !hasNumbers && !hasSpecial) {
         showToast({
             type: "error",
             title: "Error!",
@@ -72,15 +72,15 @@ function genPassword() {
     let bindingChars = []; // Array that will contain one character from every selected characters group
     let passChars = []; // Array that will contain the bindingChars[] plus as many character from allChars[] as needed to reach the password length
 
-    if (hasLower) {
-        let index = Math.floor(Math.random() * lowerChars.length);
-        allChars = allChars.concat(lowerChars)
-        bindingChars.push(lowerChars[index]);
-    }
     if (hasUpper) {
         let index = Math.floor(Math.random() * upperChars.length);
         allChars = allChars.concat(upperChars)
         bindingChars.push(upperChars[index]);
+    }
+    if (hasLower) {
+        let index = Math.floor(Math.random() * lowerChars.length);
+        allChars = allChars.concat(lowerChars)
+        bindingChars.push(lowerChars[index]);
     }
     if (hasNumbers) {
         let index = Math.floor(Math.random() * numbersChars.length);
@@ -128,7 +128,6 @@ function genPassword() {
     passBtn.classList.add("flex");
     passBtn.classList.add("j-c--space-b");
     passBtn.classList.add("al-i--center");
-    passBtn.classList.add("text_sub-s");
     passBtn.classList.add("c--p-50");
     passBtn.classList.add("b--p-10-30");
     passBtn.classList.add("bdp-f--blur-1");

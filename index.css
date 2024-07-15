@@ -92,6 +92,7 @@ main {
 .password {
     text-align: left;
     letter-spacing: 0.16rem;
+    font-size: 1.6rem;
 }
 
 .password:hover {
@@ -516,5 +517,11 @@ i.chevron-down {
     }
     100% {
         width: 0;
+    }
+}
+
+@media (min-width: 420px) {
+    .password {
+        font-size: 2rem;
     }
 }
