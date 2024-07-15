@@ -4,8 +4,8 @@ const modalBlur = document.getElementById("modal-blur");
 const settings = document.getElementById("settings-modal-cont");
 
 // Checkboxes
-const lowerCheck = document.getElementById("include-lower");
 const upperCheck = document.getElementById("include-upper");
+const lowerCheck = document.getElementById("include-lower");
 const numbersCheck = document.getElementById("include-numbers");
 const specialCheck = document.getElementById("include-special");
 
@@ -29,18 +29,18 @@ const cancBtn = document.getElementById("canc-btn");
 ================================================================= */
 function updateFirstCharSelect() {
     const fakeOptions = Array.from(document.querySelectorAll(".fake-opt"));
-    const lowerOptions = Array.from(document.querySelectorAll(".lower-char"));
     const upperOptions = Array.from(document.querySelectorAll(".upper-char"));
+    const lowerOptions = Array.from(document.querySelectorAll(".lower-char"));
     const numbersOptions = Array.from(document.querySelectorAll(".number-char"));
     const specialOptions = Array.from(document.querySelectorAll(".special-char"));
   
     // Toggle options according to the checked checkboxes
+    upperOptions.forEach((opt) => {
+        opt.hidden = !upperCheck.checked;
+    });
+
     lowerOptions.forEach((opt) => {
       opt.hidden = !lowerCheck.checked;
-    });
-  
-    upperOptions.forEach((opt) => {
-      opt.hidden = !upperCheck.checked;
     });
   
     numbersOptions.forEach((opt) => {
@@ -51,16 +51,16 @@ function updateFirstCharSelect() {
       opt.hidden = !specialCheck.checked;
     });
 
-    lowerChars.forEach((char) => {
+    upperChars.forEach((char) => {
         if (!fakeOptions.some((option) => option.value === char)) {
-            const li = createRadioElement("lower-char", char);
+            const li = createRadioElement("upper-char", char);
             fakeOptionsList.appendChild(li);
         }
     });
 
-    upperChars.forEach((char) => {
+    lowerChars.forEach((char) => {
         if (!fakeOptions.some((option) => option.value === char)) {
-            const li = createRadioElement("upper-char", char);
+            const li = createRadioElement("lower-char", char);
             fakeOptionsList.appendChild(li);
         }
     });
@@ -121,8 +121,8 @@ function closeDetails() {
 
 function resetSettings() {
     // Select all the checkboxes and update their relatives variables
-    lowerCheck.checked = true;
     upperCheck.checked = true;
+    lowerCheck.checked = true;
     numbersCheck.checked = true;
     specialCheck.checked = true;
     hasLower = true;
@@ -157,17 +157,17 @@ settingsToggle.forEach((trigger) => {
     })
 })
 
-// Checkboxes 
-lowerCheck.addEventListener("input", () => {
-    hasLower = lowerCheck.checked ? true : false;
-    check(lowerChars);
+// Checkboxes
+upperCheck.addEventListener("input", () => {
+    hasUpper = upperCheck.checked ? true : false;
+    check(upperChars);
     showToastIfAnyChecks();
     updateFirstCharSelect();
 });
 
-upperCheck.addEventListener("input", () => {
-    hasUpper = upperCheck.checked ? true : false;
-    check(upperChars);
+lowerCheck.addEventListener("input", () => {
+    hasLower = lowerCheck.checked ? true : false;
+    check(lowerChars);
     showToastIfAnyChecks();
     updateFirstCharSelect();
 });

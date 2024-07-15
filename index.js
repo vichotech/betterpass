@@ -6,8 +6,8 @@ const passCont = document.querySelector(".password-cont");
 
 /* VARIABLES
 ================================================================= */
-const lowerChars = "abcdefghijklmnñopqrstuvwxyz".split("");
 const upperChars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
+const lowerChars = "abcdefghijklmnñopqrstuvwxyz".split("");
 const numbersChars = Array.from("0123456789");
 const specialChars = "¡!\"#$%&'()*+,-./:;<=>¿?@[\\]^_`{}~".split("");
 const chars = lowerChars.concat(upperChars, numbersChars, specialChars);
@@ -121,41 +121,65 @@ function genPassword() {
     // Hide empty state
     emptyState.style.display = "none";
 
-    const passText = document.createElement("button");
-    passText.classList.add("password");
-    passText.classList.add("w--100");
-    passText.classList.add("p--2_3");
-    passText.classList.add("text_sub-l");
-    passText.classList.add("b--p-10-30");
-    passText.classList.add("bdp-f--blur-1");
-    passText.classList.add("bd--p-50-10_1_sd");
-    passText.classList.add("bd-rd--2");
-    passText.classList.add("tr--a_out_4");
-    passText.classList.add("cur--pointer");
+    const passBtn = document.createElement("button");
+    passBtn.classList.add("password");
+    passBtn.classList.add("w--100");
+    passBtn.classList.add("p--2");
+    passBtn.classList.add("flex");
+    passBtn.classList.add("j-c--space-b");
+    passBtn.classList.add("al-i--center");
+    passBtn.classList.add("text_sub-s");
+    passBtn.classList.add("c--p-50");
+    passBtn.classList.add("b--p-10-30");
+    passBtn.classList.add("bdp-f--blur-1");
+    passBtn.classList.add("bd--p-50-10_1_sd");
+    passBtn.classList.add("bd-rd--2");
+    passBtn.classList.add("tr--a_out_4");
+    passBtn.classList.add("cur--pointer");
 
+    const copyIcon = document.createElement("div");
+    copyIcon.classList.add("square--5");
+    copyIcon.innerHTML = `<svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                    </svg>`;
+
+    const passWrap = document.createElement("div");
     const passCharsArray = password.split("");
     passCharsArray.forEach((c) => {
         const char = document.createElement("span");
         char.classList.add("char-span");
         char.innerText = c;
-        if (lowerChars.includes(c)) {
-            char.style.color = "cyan";
-        } else if (upperChars.includes(c)) {
+        if (upperChars.includes(c)) {
+            char.style.color = "#0ff";
+        } else if (lowerChars.includes(c)) {
             char.style.color = "#0f0";
         } else if (numbersChars.includes(c)) {
             char.style.color = "#f0f";
         } else if (specialChars.includes(c)) {
             char.style.color = "#ff0";
         }
-        passText.appendChild(char);
+        passWrap.appendChild(char);
+        passBtn.appendChild(passWrap);
+        passBtn.appendChild(copyIcon);
     });
 
     // Copy password to clipboard
-    passText.addEventListener("click", (e) => {
+    passBtn.addEventListener("click", (e) => {
         copy(e.target.textContent, "Password copied to clipboard.", "Create a password before copying it.");
     });
 
-    passCont.appendChild(passText);
+    passCont.appendChild(passBtn);
 };
 
 function copy(text, successMsg, errorMsg) {

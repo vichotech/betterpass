@@ -49,6 +49,9 @@
 .p--0_3 {
     padding: 0 var(--s-3x);
 }
+.p--2 {
+    padding: var(--s-2x);
+}
 .p--2_3 {
     padding: var(--s-2x) var(--s-3x);
 }
