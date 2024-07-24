@@ -171,11 +171,13 @@ function genPassword() {
         passWrap.appendChild(char);
         passBtn.appendChild(passWrap);
         passBtn.appendChild(copyIcon);
+        passBtn.value = password;
     });
 
     // Copy password to clipboard
-    passBtn.addEventListener("click", (e) => {
-        copy(e.target.textContent, "Password copied to clipboard.", "Create a password before copying it.");
+    passBtn.addEventListener("click", () => {
+        const btnPassword = passBtn.value;
+        copy(btnPassword, "Password copied to clipboard", "Create a password before copying it.");
     });
 
     passCont.appendChild(passBtn);

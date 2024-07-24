@@ -520,7 +520,7 @@ i.chevron-down {
     }
 }
 
-@media (min-width: 420px) {
+@media (min-width: 410px) {
     .password {
         font-size: 2rem;
     }
