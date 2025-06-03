@@ -42,7 +42,7 @@ document.addEventListener("click", (e) => {
     };
 });
 
-genBtn.addEventListener("click", () => {
+genBtn.addEventListener("click", function() {
     // Verify if there's any selected checkboxes
     if(!hasUpper && !hasLower && !hasNumbers && !hasSpecial) {
         showToast({
@@ -51,6 +51,7 @@ genBtn.addEventListener("click", () => {
             description: "At least one type of characters must be selected before creating a new password."
         });
     } else {
+        this.classList.toggle("turned");
         const passwords = Array.from(document.querySelectorAll(".password"));
         if(passwords.length === 0) {
             for(let i = 0; i < numberOfPass; i++){

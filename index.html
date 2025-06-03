@@ -20,10 +20,10 @@
         <p id="background" class="f-fam--c text_h6 c--dark"></p>
     </div>
     <main class="h--100 p--4 relative flex f-d--col j-c--space-b al-i--center g--2">
-        <header class="main-header w--100 flex j-c--space-b al-i--center b--p-10-50 bdp-f--blur-1 o--p-50_20 bd-rd--pill c--p-50">
+        <header class="main-header w--100 flex j-c--space-b al-i--center b--p-10-50 bdp-f--blur-1 o--p-50_20 bd-rd--pill c--p-50 tr--a_out_2">
             <div class="branding flex al-i--base g--2">
                 <h1 class="text_sub-l">BetterPass</h1>
-                <span class="version text_sub-s c--p-20">v1.0.6</span>
+                <span class="version text_sub-s c--p-20">v1.0.7</span>
             </div>
             <div class="icons-cont flex al-i--center g--3">
                 <a class="square--6 c--current" href="https://github.com/vichotech/betterpass" target="_blank" title="@vichotech on GitHub" rel="noopener">
@@ -54,14 +54,14 @@
 
         <!-- BUTTONS CONTAINER -->
         <div class="btn-cont p--1 flex j-c--center g--1 b--p-10-50 bdp-f--blur-1 o--p-50_20 bd-rd--pill z--2">
-            <button id="stng-btn" class="secondary-btn settings-toggle h--12 w--12 p--0_2 b--p-50-20 o--p-50_20 bd-rd--pill text_body-s c--p-50 tr--a_out_2 cur--pointer flex al-i--center j-c--center" title="Settings">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-2"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+            <button id="stng-btn" class="secondary-btn settings-toggle h--12 w--12 p--0_2 b--p-50-20 o--p-50_20 bd-rd--pill text_body-s c--p-50 tr--a_out_2 cur--pointer flex al-i--center j-c--center" title="Settings" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
             </button>
-            <button id="gen-btn" class="primary-btn h--12 w--12 p--0_2 b--p-50 bd-rd--pill text_sub-s c--dark tr--a_out_2 cur--pointer flex al-i--center j-c--center" title="Generate password">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dice-5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M16 8h.01"/><path d="M8 8h.01"/><path d="M8 16h.01"/><path d="M16 16h.01"/><path d="M12 12h.01"/></svg>
+            <button id="gen-btn" class="primary-btn h--12 w--12 p--0_2 b--p-50 bd-rd--pill text_sub-s c--dark tr--a_out_2 cur--pointer flex al-i--center j-c--center" title="Generate password" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M16 8h.01"/><path d="M8 8h.01"/><path d="M8 16h.01"/><path d="M16 16h.01"/><path d="M12 12h.01"/></svg>
             </button>
-            <button id="" class="secondary-btn h--12 w--12 p--0_2 b--p-50-20 o--p-50_20 bd-rd--pill text_body-s c--p-50 tr--a_out_2 cur--pointer flex al-i--center j-c--center" title="History (Coming soon)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+            <button id="hist-btn" class="secondary-btn h--12 w--12 p--0_2 b--p-50-20 o--p-50_20 bd-rd--pill text_body-s c--p-50 tr--a_out_2 cur--pointer flex al-i--center j-c--center" title="History (Coming soon)" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
             </button>
         </div>
 
@@ -76,7 +76,24 @@
     <!-- SETTINGS MODAL -->
     <div class="modal-cont h--100 w--100 flex-row al-i--center j-c--center fixed l--0 tr--a_out_4 z--3" id="settings-modal-cont">
         <div class="modal p--2 b--p-5 o--p-50_20 bd-rd--4 c--ligth flex f-d--col al-i--start g--2 ov--hidden" id="settings-modal">
-            <p class="modal-title p--2_1 text_sub-m c--p-50">Settings</p>
+            <div class="modal__header w--100 p--2_1 flex j-c--space-b al-i--center g--1 c--p-50">
+                <p class="modal-title text_sub-m c--p-50">Settings</p>
+                <svg
+                    class="modal__close cur--pointer"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M18 6l-12 12m0 -12l12 12" />
+                </svg>
+            </div>
 
             <div class="main-content w--100 m-b--3 flex f-d--col g--3">
                 <!-- CHECKBOXES -->
@@ -121,7 +138,7 @@
                                 <i class="chevron-down tr--a_ease_1"></i>
                                 <!-- <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon"> -->
                             </summary>
-                            <ul id="first-char-fake-opt-list" class="list w--100 p--1 flex f-d--col g--1 b--p-10 o--p-50_20 bd-rd--3 absolute l--0">
+                            <ul id="first-char-fake-opt-list" class="list w--100 p--1 flex f-d--col g--1 b--p-10 o--p-50_20 bd-rd--2 absolute l--0">
                                 <li class="opt-cont first-char">
                                     <input id="first-char-first-radio" class="fake-opt h--10 w--100 o--p-50_20 tr--a_out_2 bd-rd--2 cur--pointer" type="radio" name="first-char" value="None" checked>
                                 </li>
@@ -137,7 +154,7 @@
                                 <i class="chevron-down tr--a_ease_1"></i>
                                 <!-- <img src="assets/svg/chevron-down.svg" alt="down" class="svg-icon svg-icon-s animated-icon"> -->
                             </summary>
-                            <ul id="last-char-fake-opt-list" class="list w--100 p--1 flex f-d--col g--1 b--p-10 o--p-50_20 bd-rd--3 absolute l--0">
+                            <ul id="last-char-fake-opt-list" class="list w--100 p--1 flex f-d--col g--1 b--p-10 o--p-50_20 bd-rd--2 absolute l--0">
                                 <li class="opt-cont last-char">
                                     <input id="last-char-first-radio" class="fake-opt h--10 w--100 o--p-50_20 tr--a_out_2 bd-rd--2 cur--pointer" type="radio" name="last-char" value="None" checked>
                                 </li>
@@ -167,8 +184,32 @@
 
             <!-- BUTTONS -->
             <div class="btn-cont-v flex g--2 z--2">
-                <button id="reset-btn" class="secondary-btn settings-toggle s--sm p--0_2 f--1 b--p-10 o--p-50_20 text_body-s c--p-50 tr--a_out_2 cur--pointer">Reset</button>
-                <button id="done-btn" class="primary-btn settings-toggle s--sm p--0_2 f--1 b--p-50 text_sub-s c--dark tr--a_out_2 cur--pointer">Done</button>
+                <button id="reset-btn" class="secondary-btn settings-toggle s--sm p--0_2 f--1 b--p-10 o--p-50_20 text_body-s c--p-50 tr--a_out_2 cur--pointer" type="button">Reset</button>
+                <button id="done-btn" class="primary-btn settings-toggle s--sm p--0_2 f--1 b--p-50 text_sub-s c--dark tr--a_out_2 cur--pointer" type="button">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HISTORY MODAL -->
+    <div class="modal-cont h--100 w--100 flex-row al-i--center j-c--center fixed l--0 tr--a_out_4 z--3" id="history-modal-cont">
+        <div class="modal p--2 b--p-5 o--p-50_20 bd-rd--4 c--ligth flex f-d--col al-i--start g--2 ov--hidden" id="history-modal">
+            <div class="modal__header w--100 p--2_1 flex j-c--space-b al-i--center g--1 c--p-50">
+                <p class="modal-title text_sub-m">History (Coming soon)</p>
+                <svg
+                    class="modal__close cur--pointer"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M18 6l-12 12m0 -12l12 12" />
+                </svg>
             </div>
         </div>
     </div>

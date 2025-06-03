@@ -34,7 +34,7 @@ body {
 }
 
 .main-header {
-    padding: var(--s-3x);
+    padding: 12px 14px 12px 16px;
     z-index: 5;
 }
 
@@ -222,6 +222,14 @@ button {
     background: var(--primary-20);
 }
 
+#gen-btn {
+    rotate: 0deg;
+
+    &.turned {
+        rotate: 180deg;
+    }
+}
+
 /* CHECKBOXES
 ================================================================= */
 .checkbox-frames-cont {
@@ -275,7 +283,7 @@ input[type="checkbox"]:checked ~ .fake-check {
     background-image: url(./assets/svg/check.svg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 12px;
 }
 
 /* RANGES
@@ -316,6 +324,13 @@ input[type="range"]::-moz-range-progress {
     outline-offset: -16px;
 }
 
+/* input[type="range"]::-ms-fill-lower {
+    height: 100%;
+    background-color: var(--primary-50);
+    outline: 16px solid var(--primary-50);
+    outline-offset: -16px;
+} */
+
 /* Thumb */  
 input[type="range"]::-moz-range-thumb {
     -moz-appearance: none;
@@ -342,10 +357,11 @@ input[type="range"]::-moz-range-thumb {
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
 
-    height: 42px;
+    height: 40px;
     width: 28px;
     margin-top: 0; /* Specify a margin in Chrome. In Firefox and IE it is automatic */
     background: var(--primary-50);
+    /* background-color: transparent; */
 
     -webkit-border-radius: 7px;
     border-radius: 7px;
@@ -361,7 +377,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 input[type=range]::-ms-thumb {
     -ms-progress-appearance: none;
     
-    height: 42px;
+    height: 40px;
     width: 28px;
     margin-top: 0; /* Specify a margin in Chrome. In Firefox and IE it is automatic */
     background: var(--primary-50);

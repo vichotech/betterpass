@@ -1,7 +1,8 @@
 /* SELECTORS
 ================================================================= */
 const modalBlur = document.getElementById("modal-blur");
-const settings = document.getElementById("settings-modal-cont");
+const settingsModal = document.getElementById("settings-modal-cont");
+const historyModal = document.getElementById("history-modal-cont");
 
 // Checkboxes
 const upperCheck = document.getElementById("include-upper");
@@ -28,6 +29,7 @@ const lastCharFakeOptList = document.getElementById("last-char-fake-opt-list");
 const lastCharFirstRadio = document.getElementById("last-char-first-radio");
 
 // Buttons
+const historyBtn = document.getElementById("hist-btn");
 const doneBtn = document.getElementById("done-btn");
 const resetBtn = document.getElementById("reset-btn");
 
@@ -183,9 +185,28 @@ function resetSettings() {
 const settingsToggle = Array.from(document.querySelectorAll(".settings-toggle"));
 settingsToggle.forEach((trigger) => {
     trigger.addEventListener("click", () => {
-        settings.classList.toggle("active");
+        settingsModal.classList.toggle("active");
         modalBlur.classList.toggle("active");
     });
+});
+
+const modalKillers = Array.from(document.querySelectorAll(".modal__close"));
+modalKillers.forEach((killer) => {
+    killer.addEventListener("click", () => {
+        modalBlur.classList.toggle("active");
+        if (settingsModal.classList.contains("active")) {
+            settingsModal.classList.remove("active");
+        }
+
+        if (historyModal.classList.contains("active")) {
+            historyModal.classList.remove("active");
+        }
+    });
+});
+
+historyBtn.addEventListener("click", () => {
+    historyModal.classList.toggle("active");
+    modalBlur.classList.toggle("active");
 });
 
 // Checkboxes
